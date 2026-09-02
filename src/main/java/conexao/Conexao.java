@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class Conexao {
 
     private static final String DRIVER_POSTGRESQL = "org.postgresql.Driver";
-    private static final String ENDERECO = "jdbc:postgresql://localhost:5432/sistema_academico";
-    private static final String USUARIO = "postgres";
-    private static final String SENHA = "postgres";
+    private static final String ENDERECO =  "jdbc:postgresql://ep-old-pond-acsehzt0-pooler.sa-east-1.aws.neon.tech:5432/neondb?sslmode=require";
+    private static final String USUARIO = "neondb_owner";
+    private static final String SENHA = "npg_QMatRnP4I7ko";
 
     public static Connection getConexao() {
 

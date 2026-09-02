@@ -23,22 +23,39 @@ O sistema tem como objetivo realizar o gerenciamento de informações acadêmica
 * Maven
 * DBeaver
 
-### Configuração do banco de dados
+## INSTRUÇÕES DE CONEXÃO - BANCO NEONDB
 
 1. Instale e execute o PostgreSQL.
 2. Crie o banco de dados `sistema_academico`.
 3. Execute os comandos SQL necessários para criação das tabelas.
 4. Verifique as informações de conexão no arquivo `Conexao.java`:
 
+### Tipo de banco
+PostgreSQL (hospedado na Neon)
+
+### Dados de Conexão
 ```text
-Banco: sistema_academico
-Host: localhost
-Porta: 5432
-Usuário: postgres
-Senha: postgres
+
+| Host: ep-old-pond-acsehzt0-pooler.sa-east-1.aws.neon.tech
+| Porta: 5432
+| Database: neondb
+| Usuário: neondb_owner
+| Senha: npg_QMatRnP4I7ko
 ```
 
-### Execução do sistema
+### Connection String (URI)
+
+postgresql://neondb_owner:npg_QMatRnP4I7ko@ep-old-pond-acsehzt0-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+
+### Como Conectar
+
+1. No seu cliente de banco (DBeaver, TablePlus, pgAdmin, etc.), crie uma nova conexão do tipo PostgreSQL.
+2. Preencha os campos Host, Porta, Database, Usuário e Senha conforme acima.
+3. Ative a opção SSL/TLS como `require`.
+4. Ao listar os databases, use apenas o `neondb` (ignore o database `postgres`, que é padrão do sistema).
+
+
+## Execução do sistema
 
 1. Clone o repositório.
 2. Abra o projeto no Apache NetBeans.
