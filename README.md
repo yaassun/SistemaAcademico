@@ -25,14 +25,6 @@ O sistema tem como objetivo realizar o gerenciamento de informações acadêmica
 
 ## INSTRUÇÕES DE CONEXÃO - BANCO NEONDB
 
-1. Instale e execute o PostgreSQL.
-2. Crie o banco de dados `sistema_academico`.
-3. Execute os comandos SQL necessários para criação das tabelas.
-4. Verifique as informações de conexão no arquivo `Conexao.java`:
-
-### Tipo de banco
-PostgreSQL (hospedado na Neon)
-
 ### Dados de Conexão
 ```text
 
