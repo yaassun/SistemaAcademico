@@ -23,11 +23,10 @@ O sistema tem como objetivo realizar o gerenciamento de informações acadêmica
 * Maven
 * DBeaver
 
-## INSTRUÇÕES DE CONEXÃO - BANCO NEONDB
+## Instruções de Conexão - Banco NeonDB
 
 ### Dados de Conexão
 ```text
-
 | Host: ep-old-pond-acsehzt0-pooler.sa-east-1.aws.neon.tech
 | Porta: 5432
 | Database: neondb
