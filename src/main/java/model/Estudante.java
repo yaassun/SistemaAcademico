@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 public class Estudante {
@@ -13,6 +9,10 @@ public class Estudante {
     private String email;
     private String telefone;
     private String situacao;
+    
+    public Estudante(){}
+    
+    public Estudante(String nome, String matricula){}
 
     public String getMatricula() {
         return matricula;

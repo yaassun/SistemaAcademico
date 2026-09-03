@@ -21,10 +21,10 @@ public class App {
         estudante.setTelefone("75999999999");
         estudante.setSituacao("Ativo");
 
-        estudanteDAO.incluir(estudante);
+        estudanteDAO.inserir(estudante);
 
         // CONSULTAR
-        List<Estudante> estudantes = estudanteDAO.consulta();
+        List<Estudante> estudantes = estudanteDAO.consultar("Maria");
 
         for (Estudante estudante1 : estudantes) {
 
