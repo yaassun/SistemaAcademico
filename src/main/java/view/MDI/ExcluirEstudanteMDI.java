@@ -1,44 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package view.MDI;
+import model.Estudante;
+import repository.EstudanteDAO;
 
-/**
- *
- * @author Késia
- */
-public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
+    public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
+        public ExcluirEstudanteMDI() {
+            initComponents();
 
-    /**
-     * Creates new form ExcluirEstudanteMDI
-     */
-    public ExcluirEstudanteMDI() {
-        initComponents();
-        
-    getContentPane().setBackground(
-    new java.awt.Color(248, 250, 251)
-);
-    getContentPane().setBackground(
-    new java.awt.Color(244, 247, 250)
-);
-    // Fundo da tela
-    getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250)
-    );
+            getContentPane().setBackground(
+            new java.awt.Color(248, 250, 251)
+            );
+            getContentPane().setBackground(
+            new java.awt.Color(244, 247, 250)
+            );
+            // Fundo da tela
+            getContentPane().setBackground(
+                new java.awt.Color(244, 247, 250)
+            );
 
-    java.awt.Color azul = new java.awt.Color(22, 105, 122);
+            java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-    buscar.setBackground(azul);
-    buscar.setForeground(java.awt.Color.WHITE);
+            buscar.setBackground(azul);
+            buscar.setForeground(java.awt.Color.WHITE);
 
-    excluir.setBackground(azul);
-    excluir.setForeground(java.awt.Color.WHITE);
+            excluir.setBackground(azul);
+            excluir.setForeground(java.awt.Color.WHITE);
 
-    fechar.setBackground(azul);
-    fechar.setForeground(java.awt.Color.WHITE);
+            fechar.setBackground(azul);
+            fechar.setForeground(java.awt.Color.WHITE);
 
-    }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,17 +41,16 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
 
         lblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBusca = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtCurso = new javax.swing.JTextField();
+        txtSemestre = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -70,6 +59,13 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         excluir = new javax.swing.JButton();
         fechar = new javax.swing.JButton();
+        cmbSituacao = new javax.swing.JComboBox<>();
+        limpar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         lblTitulo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(25, 105, 122));
@@ -78,8 +74,11 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setText("Matrícula");
 
+        txtBusca.addActionListener(this::txtBuscaActionPerformed);
+
         buscar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         buscar.setText("Buscar");
+        buscar.addActionListener(this::buscarActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 105, 122));
@@ -88,19 +87,19 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setText("Matrícula");
 
-        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtMatricula.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        txtNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        txtCurso.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        txtCurso.addActionListener(this::txtCursoActionPerformed);
 
-        jTextField5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtSemestre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        jTextField6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtEmail.addActionListener(this::txtEmailActionPerformed);
 
-        jTextField7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
-        jTextField8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setText("Nome");
@@ -122,120 +121,216 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
 
         excluir.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         excluir.setText("Excluir");
+        excluir.addActionListener(this::excluirActionPerformed);
 
         fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         fechar.setText("Fechar");
+        fechar.addActionListener(this::fecharActionPerformed);
+
+        cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
+
+        limpar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        limpar.setText("Limpar");
+        limpar.setToolTipText("");
+        limpar.addActionListener(this::limparActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(lblTitulo)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo)
-                            .addComponent(jLabel3))
-                        .addGap(136, 136, 136))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(24, 24, 24)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(70, 70, 70)
                                     .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(132, 132, 132)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(limpar)
+                                    .addGap(29, 29, 29)
                                     .addComponent(fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(35, 35, 35)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(24, 24, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNome)
+                                        .addComponent(txtMatricula)
+                                        .addComponent(txtCurso)
+                                        .addComponent(txtSemestre)
+                                        .addComponent(txtEmail)
+                                        .addComponent(txtTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                                        .addComponent(cmbSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(27, 27, 27)
                         .addComponent(buscar)))
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cmbSituacao, txtTelefone});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {excluir, fechar, limpar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar)
                     .addComponent(jLabel2))
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel3)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jLabel10)
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechar)
+                    .addComponent(limpar)
+                    .addComponent(excluir))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbSituacao, txtTelefone});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {excluir, fechar, limpar});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtBusca, txtMatricula});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_fecharActionPerformed
+
+    private void txtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCursoActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSituacaoActionPerformed
+
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+
+    private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
+        txtMatricula.setText("");
+        txtNome.setText("");
+        txtCurso.setText("");
+        txtSemestre.setText("");
+        txtEmail.setText("");
+        txtTelefone.setText("");
+        cmbSituacao.setSelectedIndex(0);
+        txtBusca.setText("");
+    }//GEN-LAST:event_limparActionPerformed
+
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+        int resposta = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "Deseja realmente excluir este estudante?",
+                "Confirmar exclusão",
+                javax.swing.JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == javax.swing.JOptionPane.YES_OPTION) {
+            EstudanteDAO dao = new EstudanteDAO();
+            dao.excluir(txtMatricula.getText());
+
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Estudante excluído com sucesso!"
+            );
+
+            txtBusca.setText("");
+            txtMatricula.setText("");
+            txtNome.setText("");
+            txtCurso.setText("");
+            txtSemestre.setText("");
+            txtEmail.setText("");
+            txtTelefone.setText("");
+            cmbSituacao.setSelectedIndex(0);
+        }
+
+
+    }//GEN-LAST:event_excluirActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        String matricula = txtBusca.getText();
+
+        EstudanteDAO dao = new EstudanteDAO();
+        var estudantes = dao.consultar(matricula);
+
+        if (estudantes.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Estudante não encontrado."
+            );
+            return;
+        }
+
+        Estudante estudante = estudantes.get(0);
+
+        txtMatricula.setText(estudante.getMatricula());
+        txtNome.setText(estudante.getNome());
+        txtCurso.setText(estudante.getCurso());
+        txtSemestre.setText(String.valueOf(estudante.getSemestre()));
+        txtEmail.setText(estudante.getEmail());
+        txtTelefone.setText(estudante.getTelefone());
+        cmbSituacao.setSelectedItem(estudante.getSituacao());
+    }//GEN-LAST:event_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
+    private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JButton excluir;
     private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel10;
@@ -247,14 +342,14 @@ public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JButton limpar;
+    private javax.swing.JTextField txtBusca;
+    private javax.swing.JTextField txtCurso;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtSemestre;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

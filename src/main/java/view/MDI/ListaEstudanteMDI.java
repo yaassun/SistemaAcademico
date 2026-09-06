@@ -1,20 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package view.MDI;
+import model.Estudante;
+import repository.EstudanteDAO;
 
-/**
- *
- * @author Késia
- */
 public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListaEstudanteMDI
-     */
     public ListaEstudanteMDI() {
         initComponents();
+        listar();   
         
         getContentPane().setBackground(
         new java.awt.Color(248, 250, 251));
@@ -22,7 +14,7 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         getContentPane().setBackground(
         new java.awt.Color(244, 247, 250));
         
-    // Fundo da tela
+        // Fundo da tela
         getContentPane().setBackground(
         new java.awt.Color(244, 247, 250));
 
@@ -34,6 +26,28 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         btnFechar.setBackground(azul);
         btnFechar.setForeground(java.awt.Color.WHITE);
 
+    }
+    
+    private void listar() {
+        EstudanteDAO dao = new EstudanteDAO();
+        var estudantes = dao.listar();
+
+        javax.swing.table.DefaultTableModel modelo =
+            (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+
+        modelo.setRowCount(0);
+
+        for (Estudante estudante : estudantes) {
+            modelo.addRow(new Object[]{
+                estudante.getMatricula(),
+                estudante.getNome(),
+                estudante.getCurso(),
+                estudante.getSemestre(),
+                estudante.getEmail(),
+                estudante.getTelefone(),
+                estudante.getSituacao()
+            });
+        }
     }
 
     /**
@@ -57,6 +71,11 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 105, 122));
@@ -89,30 +108,32 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
 
         btnAtualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(this::btnAtualizarActionPerformed);
 
         btnFechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnFechar.setText("Fechar");
+        btnFechar.addActionListener(this::btnFecharActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAtualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(btnFechar)
-                .addGap(119, 119, 119))
+                .addGap(257, 257, 257))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizar, btnFechar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -127,8 +148,18 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizar, btnFechar});
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        listar();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
