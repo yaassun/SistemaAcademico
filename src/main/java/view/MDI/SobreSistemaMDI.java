@@ -1,18 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package view.MDI;
 
-/**
- *
- * @author Késia
- */
 public class SobreSistemaMDI extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form SobreSistemaMDI
-     */
     public SobreSistemaMDI() {
         initComponents();
           
@@ -22,7 +10,7 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
         getContentPane().setBackground(
         new java.awt.Color(244, 247, 250));
         
-    // Fundo da tela
+        // Fundo da tela
         getContentPane().setBackground(
         new java.awt.Color(244, 247, 250));
 
@@ -54,6 +42,8 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 105, 122));
         jLabel1.setText("Sistema  De Controle Academico");
@@ -84,6 +74,7 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
 
         btnFechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnFechar.setText("Fechar");
+        btnFechar.addActionListener(this::btnFecharActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,24 +85,25 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
-                                    .addComponent(jLabel9)))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addComponent(jLabel9)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(btnFechar)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 93, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +133,10 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFecharActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

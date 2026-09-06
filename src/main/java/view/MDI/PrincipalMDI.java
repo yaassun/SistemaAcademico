@@ -1,21 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view.MDI;
 
-/**
- *
- * @author Késia
- */
 public class PrincipalMDI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PrincipalMDI.class.getName());
 
-    /**
-     * Creates new form PrincipalMDI
-     */
-  public PrincipalMDI() {
+    public PrincipalMDI() {
         initComponents();
         
         getContentPane().setBackground(
@@ -29,12 +18,13 @@ public class PrincipalMDI extends javax.swing.JFrame {
         menu.setBorderPainted(false);
 
         menu.setUI(new javax.swing.plaf.basic.BasicMenuBarUI() {
+            
         @Override
-        public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
-        g.setColor(new java.awt.Color(72, 159, 181));
-        g.fillRect(0, 0, c.getWidth(), c.getHeight());
-    }
-});
+            public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
+                g.setColor(new java.awt.Color(72, 159, 181));
+                g.fillRect(0, 0, c.getWidth(), c.getHeight());
+            }
+        });
         cadastro.setOpaque(true);
         cadastro.setBackground(new java.awt.Color(72, 159, 181));
         cadastro.setForeground(java.awt.Color.WHITE);
