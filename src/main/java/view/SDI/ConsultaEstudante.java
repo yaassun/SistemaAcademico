@@ -205,7 +205,30 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
-        // TODO add your handling code here:
+        String termo = txtConsulta.getText().trim();
+
+        if (termo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Digite um termo para consultar.");
+            return;
+        }
+
+        // Opcional: Aqui você pode usar rbMatricula.isSelected() ou rbNome.isSelected() 
+        // para mudar o comportamento no DAO futuramente.
+        repository.EstudanteDAO dao = new repository.EstudanteDAO();
+        java.util.List<model.Estudante> resultados = dao.consultar(termo);
+
+        if (!resultados.isEmpty()) {
+            model.Estudante e = resultados.get(0);
+            txtMatriculaconsulta.setText(e.getMatricula());
+            txtNomeconsulta.setText(e.getNome());
+            txtCursoconsulta.setText(e.getCurso());
+            txtSemestreconsulta.setText(String.valueOf(e.getSemestre()));
+            txtEmailconsulta.setText(e.getEmail());
+            txtTelefoneconsulta.setText(e.getTelefone());
+            txtSituacaoconsulta.setText(e.getSituacao());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+        }
     }//GEN-LAST:event_btnConsultaActionPerformed
 
     private void btnFechaconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFechaconsultaActionPerformed

@@ -118,7 +118,27 @@ public class ListaEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
+        try {
+            repository.EstudanteDAO dao = new repository.EstudanteDAO();
+            java.util.List<model.Estudante> lista = dao.consultar("");
+
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            modelo.setNumRows(0);
+
+            for (model.Estudante e : lista) {
+                modelo.addRow(new Object[]{
+                    e.getMatricula(),
+                    e.getNome(),
+                    e.getCurso(),
+                    e.getSemestre(),
+                    e.getEmail(),
+                    e.getTelefone(),
+                    e.getSituacao()
+                });
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnLstfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstfecharActionPerformed

@@ -203,11 +203,48 @@ public class AlterarEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscaraltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaraltActionPerformed
-        // TODO add your handling code here:
+        String busca = txtMatriculabusca.getText().trim();
+        if (busca.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Informe a matrícula para buscar.");
+            return;
+        }
+
+        repository.EstudanteDAO dao = new repository.EstudanteDAO();
+        java.util.List<model.Estudante> resultados = dao.consultar(busca);
+
+        if (!resultados.isEmpty()) {
+            model.Estudante e = resultados.get(0);
+            txtMatriculaalt.setText(e.getMatricula());
+            txtMatriculaalt.setEditable(false); 
+            txtNomealt.setText(e.getNome());
+            txtCursoalt.setText(e.getCurso());
+            txtSemestrealt.setText(String.valueOf(e.getSemestre()));
+            txtEmailalt.setText(e.getEmail());
+            txtTelefonealt.setText(e.getTelefone());
+            txtSituacaoalt.setText(e.getSituacao());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Estudante não encontrado.");
+        }
     }//GEN-LAST:event_txtBuscaraltActionPerformed
 
     private void btnSalvaralteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaralteracoesActionPerformed
-        // TODO add your handling code here:
+        try {
+            model.Estudante e = new model.Estudante();
+            e.setMatricula(txtMatriculaalt.getText());
+            e.setNome(txtNomealt.getText());
+            e.setCurso(txtCursoalt.getText());
+            e.setSemestre(Integer.parseInt(txtSemestrealt.getText()));
+            e.setEmail(txtEmailalt.getText());
+            e.setTelefone(txtTelefonealt.getText());
+            e.setSituacao(txtSituacaoalt.getText());
+
+            repository.EstudanteDAO dao = new repository.EstudanteDAO();
+            dao.alterar(e);
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!");
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao atualizar: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnSalvaralteracoesActionPerformed
 
     private void btnAltfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltfecharActionPerformed

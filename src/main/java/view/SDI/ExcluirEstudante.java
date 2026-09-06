@@ -205,11 +205,62 @@ public class ExcluirEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscaexcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaexcActionPerformed
-        // TODO add your handling code here:
+        String busca = txtBuscaexc.getText().trim();
+        if (busca.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Digite a matrícula do estudante.");
+            return;
+        }
+
+        repository.EstudanteDAO dao = new repository.EstudanteDAO();
+        java.util.List<model.Estudante> lista = dao.consultar(busca);
+
+        if (!lista.isEmpty()) {
+            model.Estudante e = lista.get(0);
+            txtMatriculaexc.setText(e.getMatricula());
+            txtNomeexc.setText(e.getNome());
+            txtCursoexc.setText(e.getCurso());
+            txtSemestreexc.setText(String.valueOf(e.getSemestre()));
+            txtEmailexc.setText(e.getEmail());
+            txtTelefoneexc.setText(e.getTelefone());
+            txtSituacaoexc.setText(e.getSituacao());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Estudante não localizado.");
+        }
     }//GEN-LAST:event_btnBuscaexcActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        String matricula = txtMatriculaexc.getText();
+
+        if (matricula.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Busque um estudante primeiro.");
+            return;
+        }
+
+        int confirmacao = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Tem certeza que deseja excluir o estudante com matrícula " + matricula + "?",
+            "Confirmação",
+            javax.swing.JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacao == javax.swing.JOptionPane.YES_OPTION) {
+            try {
+                repository.EstudanteDAO dao = new repository.EstudanteDAO();
+                dao.excluir(matricula);
+                javax.swing.JOptionPane.showMessageDialog(this, "Estudante removido com sucesso.");
+
+                txtBuscaexc.setText("");
+                txtMatriculaexc.setText("");
+                txtNomeexc.setText("");
+                txtCursoexc.setText("");
+                txtSemestreexc.setText("");
+                txtEmailexc.setText("");
+                txtTelefoneexc.setText("");
+                txtSituacaoexc.setText("");
+            } catch (Exception ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao excluir: " + ex.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnexcluifecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluifecharActionPerformed

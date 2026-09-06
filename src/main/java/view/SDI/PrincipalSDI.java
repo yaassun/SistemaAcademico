@@ -138,6 +138,7 @@ public class PrincipalSDI extends javax.swing.JFrame {
         menuSistema.add(menuSobre);
 
         menuSair.setText("Sair");
+        menuSair.addActionListener(this::menuSairActionPerformed);
         menuSistema.add(menuSair);
 
         menuPrincipal.add(menuSistema);
@@ -200,6 +201,10 @@ public class PrincipalSDI extends javax.swing.JFrame {
         SobreSistema tela = new SobreSistema();
         tela.setVisible(true);
     }//GEN-LAST:event_menuSobreActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_menuSairActionPerformed
 
     /**
      * @param args the command line arguments

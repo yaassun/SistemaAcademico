@@ -182,7 +182,26 @@ public class CadastroEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        try {
+            model.Estudante estudante = new model.Estudante();
+            estudante.setMatricula(txtMatricula.getText());
+            estudante.setNome(txtNome.getText());
+            estudante.setCurso(txtCurso.getText());
+            estudante.setSemestre(Integer.parseInt(txtSemestre.getText()));
+            estudante.setEmail(txtEmail.getText());
+            estudante.setTelefone(txtTelefone.getText());
+            estudante.setSituacao(txtSituacao.getText());
+
+            repository.EstudanteDAO dao = new repository.EstudanteDAO();
+            dao.inserir(estudante);
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Estudante cadastrado com sucesso!");
+            btnLimparActionPerformed(evt);
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "O semestre deve ser um número inteiro válido.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
