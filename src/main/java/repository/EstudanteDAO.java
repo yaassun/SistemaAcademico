@@ -116,7 +116,45 @@ public class EstudanteDAO {
             Conexao.fecharConexao(con, stmt);
         }
     }
+    
+    //LISTAR
+    public List<Estudante> listar() {
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
+        List<Estudante> estudantes = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement(
+                "SELECT * FROM estudante ORDER BY nome"
+            );
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Estudante estudante = new Estudante();
+
+                estudante.setMatricula(rs.getString("matricula"));
+                estudante.setNome(rs.getString("nome"));
+                estudante.setCurso(rs.getString("curso"));
+                estudante.setSemestre(rs.getInt("semestre"));
+                estudante.setEmail(rs.getString("email"));
+                estudante.setTelefone(rs.getString("telefone"));
+                estudante.setSituacao(rs.getString("situacao"));
+
+                estudantes.add(estudante);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+
+        return estudantes;
+    }
+    
     // EXCLUIR
     public void excluir(String matricula) {
 
