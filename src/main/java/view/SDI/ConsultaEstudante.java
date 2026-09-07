@@ -28,11 +28,12 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rbMatricula = new javax.swing.JRadioButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         rbNome = new javax.swing.JRadioButton();
         txtConsulta = new javax.swing.JTextField();
         btnConsulta = new javax.swing.JButton();
+        rbMatricula = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,20 +51,24 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         cmbSituacao = new javax.swing.JComboBox<>();
         btnFechaconsulta = new javax.swing.JToggleButton();
 
-        rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        rbMatricula.setText("Matricula");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultar Estudante");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(22, 105, 122))); // NOI18N
 
+        buttonGroup1.add(rbNome);
         rbNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         rbNome.setText("Nome");
+        rbNome.addActionListener(this::rbNomeActionPerformed);
 
         btnConsulta.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnConsulta.setText("Consultar");
         btnConsulta.addActionListener(this::btnConsultaActionPerformed);
+
+        buttonGroup1.add(rbMatricula);
+        rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        rbMatricula.setText("Matrícula");
+        rbMatricula.addActionListener(this::rbMatriculaActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,22 +76,24 @@ public class ConsultaEstudante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(rbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))))
+                .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(rbMatricula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(rbNome)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbNome)
+                    .addComponent(rbMatricula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +254,18 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSituacaoActionPerformed
 
+    private void rbMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMatriculaActionPerformed
+        txtConsulta.setText("");
+        txtConsulta.setToolTipText("Digite a matrícula para consultar");
+        txtConsulta.requestFocus();
+    }//GEN-LAST:event_rbMatriculaActionPerformed
+
+    private void rbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNomeActionPerformed
+        txtConsulta.setText("");
+        txtConsulta.setToolTipText("Digite o nome para consultar");
+        txtConsulta.requestFocus();
+    }//GEN-LAST:event_rbNomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,6 +294,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta;
     private javax.swing.JToggleButton btnFechaconsulta;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
