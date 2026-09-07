@@ -262,26 +262,15 @@ public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_limparActionPerformed
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
-        String matricula = txtMatricula.getText();
-        String nome = txtNome.getText();
-        String curso = txtCurso.getText();
-        String semestreTexto = txtSemestre.getText();
-        String email = txtEmail.getText();
-        String telefone = txtTelefone.getText();
-        String situacao = cmbSituacao.getSelectedItem().toString();
-
         try {
-            Integer semestre = Integer.valueOf(semestreTexto);
-
-            Estudante estudante = new Estudante();
-
-            estudante.setMatricula(matricula);
-            estudante.setNome(nome);
-            estudante.setCurso(curso);
-            estudante.setSemestre(semestre);
-            estudante.setEmail(email);
-            estudante.setTelefone(telefone);
-            estudante.setSituacao(situacao);
+            model.Estudante estudante = new model.Estudante();
+            estudante.setMatricula(txtMatricula.getText());
+            estudante.setNome(txtNome.getText());
+            estudante.setCurso(txtCurso.getText());
+            estudante.setSemestre(Integer.valueOf(txtSemestre.getText()));
+            estudante.setEmail(txtEmail.getText());
+            estudante.setTelefone(txtTelefone.getText());
+            estudante.setSituacao(cmbSituacao.getSelectedItem().toString());
 
             EstudanteDAO dao = new EstudanteDAO();
             dao.inserir(estudante);

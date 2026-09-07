@@ -52,7 +52,7 @@
                   <Component id="btnAltfechar" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="btnSalvaralteracoes" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +80,7 @@
                   <Component id="txtMatriculabusca" min="-2" pref="263" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="txtBuscaralt" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="221" max="32767" attributes="0"/>
+                  <EmptySpace pref="101" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -151,24 +151,18 @@
                       <Component id="jLabel2" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtMatriculaalt" pref="261" max="32767" attributes="0"/>
-                                      <Component id="txtNomealt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtSituacaoalt" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtCursoalt" alignment="1" min="-2" pref="261" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtSemestrealt" alignment="1" min="-2" pref="261" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtEmailalt" alignment="1" min="-2" pref="261" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtMatriculaalt" pref="261" max="32767" attributes="0"/>
+                          <Component id="txtNomealt" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtTelefonealt" alignment="1" min="-2" pref="261" max="-2" attributes="0"/>
+                      <Component id="txtCursoalt" alignment="0" pref="261" max="32767" attributes="0"/>
+                      <Component id="txtSemestrealt" alignment="0" pref="261" max="32767" attributes="0"/>
+                      <Component id="txtEmailalt" alignment="0" pref="261" max="32767" attributes="0"/>
+                      <Component id="txtTelefonealt" alignment="0" pref="261" max="32767" attributes="0"/>
+                      <Component id="cmbSituacao" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="210" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,9 +202,9 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtSituacaoalt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbSituacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -284,7 +278,24 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefonealt">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSituacaoalt">
+        <Component class="javax.swing.JComboBox" name="cmbSituacao">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Ativo"/>
+                <StringItem index="1" value="Formado"/>
+                <StringItem index="2" value="Trancado"/>
+                <StringItem index="3" value="Evadido"/>
+                <StringItem index="4" value="Jubilado"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbSituacaoActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

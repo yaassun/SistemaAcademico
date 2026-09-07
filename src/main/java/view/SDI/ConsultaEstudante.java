@@ -47,7 +47,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         txtSemestreconsulta = new javax.swing.JTextField();
         txtEmailconsulta = new javax.swing.JTextField();
         txtTelefoneconsulta = new javax.swing.JTextField();
-        txtSituacaoconsulta = new javax.swing.JTextField();
+        cmbSituacao = new javax.swing.JComboBox<>();
         btnFechaconsulta = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,7 +118,8 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setText("Situação");
 
-        txtSituacaoconsulta.addActionListener(this::txtSituacaoconsultaActionPerformed);
+        cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -137,15 +138,13 @@ public class ConsultaEstudante extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCursoconsulta)
-                            .addComponent(txtMatriculaconsulta)
-                            .addComponent(txtNomeconsulta)
-                            .addComponent(txtTelefoneconsulta)
-                            .addComponent(txtSituacaoconsulta))
-                        .addComponent(txtSemestreconsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtEmailconsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCursoconsulta)
+                    .addComponent(txtMatriculaconsulta)
+                    .addComponent(txtNomeconsulta)
+                    .addComponent(txtTelefoneconsulta)
+                    .addComponent(txtSemestreconsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                    .addComponent(txtEmailconsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                    .addComponent(cmbSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(135, 135, 135))
         );
         jPanel2Layout.setVerticalGroup(
@@ -175,11 +174,11 @@ public class ConsultaEstudante extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtTelefoneconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtSituacaoconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btnFechaconsulta.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -208,7 +207,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnFechaconsulta)
                 .addGap(15, 15, 15))
         );
@@ -237,7 +236,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
             txtSemestreconsulta.setText(String.valueOf(e.getSemestre()));
             txtEmailconsulta.setText(e.getEmail());
             txtTelefoneconsulta.setText(e.getTelefone());
-            txtSituacaoconsulta.setText(e.getSituacao());
+            cmbSituacao.setSelectedItem(e.getSituacao());
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
         }
@@ -247,9 +246,9 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnFechaconsultaActionPerformed
 
-    private void txtSituacaoconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSituacaoconsultaActionPerformed
+    private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSituacaoconsultaActionPerformed
+    }//GEN-LAST:event_cmbSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +278,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta;
     private javax.swing.JToggleButton btnFechaconsulta;
+    private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,7 +296,6 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     private javax.swing.JTextField txtMatriculaconsulta;
     private javax.swing.JTextField txtNomeconsulta;
     private javax.swing.JTextField txtSemestreconsulta;
-    private javax.swing.JTextField txtSituacaoconsulta;
     private javax.swing.JTextField txtTelefoneconsulta;
     // End of variables declaration//GEN-END:variables
 }

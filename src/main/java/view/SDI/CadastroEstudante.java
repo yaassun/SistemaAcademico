@@ -42,8 +42,8 @@ public class CadastroEstudante extends javax.swing.JFrame {
         txtSemestre = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
-        jComboSituacao = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        cmbSituacao = new javax.swing.JComboBox<>();
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
@@ -83,12 +83,12 @@ public class CadastroEstudante extends javax.swing.JFrame {
 
         txtTelefone.addActionListener(this::txtTelefoneActionPerformed);
 
-        jComboSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboSituacao.addActionListener(this::jComboSituacaoActionPerformed);
-
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(22, 105, 122));
         jLabel1.setText("Cadastro de Estudante");
+
+        cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,12 +103,17 @@ public class CadastroEstudante extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
-                            .addGap(51, 51, 51)
-                            .addComponent(txtMatricula))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(51, 51, 51)
+                                    .addComponent(txtMatricula))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(50, 50, 50)
+                                    .addComponent(cmbSituacao, 0, 252, Short.MAX_VALUE))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(56, 56, 56)
-                            .addComponent(txtNome))
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(58, 58, 58)
@@ -122,10 +127,9 @@ public class CadastroEstudante extends javax.swing.JFrame {
                             .addGap(58, 58, 58)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboSituacao, 0, 252, Short.MAX_VALUE)
                                 .addComponent(txtTelefone)
                                 .addComponent(txtSemestre)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +160,11 @@ public class CadastroEstudante extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addComponent(jComboSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 31, Short.MAX_VALUE))
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         btnCadastrar.setBackground(new java.awt.Color(0, 153, 153));
@@ -218,11 +222,11 @@ public class CadastroEstudante extends javax.swing.JFrame {
             estudante.setMatricula(txtMatricula.getText());
             estudante.setNome(txtNome.getText());
             estudante.setCurso(txtCurso.getText());
-            estudante.setSemestre(Integer.parseInt(txtSemestre.getText()));
+            estudante.setSemestre(Integer.valueOf(txtSemestre.getText()));
             estudante.setEmail(txtEmail.getText());
             estudante.setTelefone(txtTelefone.getText());
-            estudante.setSituacao(txtSituacao.getText());
-
+            estudante.setSituacao(cmbSituacao.getSelectedItem().toString());
+            
             repository.EstudanteDAO dao = new repository.EstudanteDAO();
             dao.inserir(estudante);
 
@@ -242,7 +246,7 @@ public class CadastroEstudante extends javax.swing.JFrame {
         txtSemestre.setText("");
         txtEmail.setText("");
         txtTelefone.setText("");
-        txtSituacao.setText("");
+        cmbSituacao.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -265,9 +269,9 @@ public class CadastroEstudante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
-    private void jComboSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboSituacaoActionPerformed
+    private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboSituacaoActionPerformed
+    }//GEN-LAST:event_cmbSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,7 +302,7 @@ public class CadastroEstudante extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JComboBox<String> jComboSituacao;
+    private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

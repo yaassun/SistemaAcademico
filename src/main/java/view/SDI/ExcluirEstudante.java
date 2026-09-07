@@ -46,7 +46,7 @@ public class ExcluirEstudante extends javax.swing.JFrame {
         txtSemestreexc = new javax.swing.JTextField();
         txtEmailexc = new javax.swing.JTextField();
         txtTelefoneexc = new javax.swing.JTextField();
-        txtSituacaoexc = new javax.swing.JTextField();
+        cmbSituacao = new javax.swing.JComboBox<>();
         btnExcluir = new javax.swing.JButton();
         btnexcluifechar = new javax.swing.JButton();
 
@@ -110,6 +110,9 @@ public class ExcluirEstudante extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("Situação");
 
+        cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -133,7 +136,7 @@ public class ExcluirEstudante extends javax.swing.JFrame {
                     .addComponent(txtSemestreexc)
                     .addComponent(txtEmailexc)
                     .addComponent(txtTelefoneexc)
-                    .addComponent(txtSituacaoexc))
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(268, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -166,8 +169,8 @@ public class ExcluirEstudante extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtSituacaoexc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         btnExcluir.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -230,7 +233,7 @@ public class ExcluirEstudante extends javax.swing.JFrame {
             txtSemestreexc.setText(String.valueOf(e.getSemestre()));
             txtEmailexc.setText(e.getEmail());
             txtTelefoneexc.setText(e.getTelefone());
-            txtSituacaoexc.setText(e.getSituacao());
+            cmbSituacao.setSelectedItem(e.getSituacao());
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Estudante não localizado.");
         }
@@ -264,7 +267,8 @@ public class ExcluirEstudante extends javax.swing.JFrame {
                 txtSemestreexc.setText("");
                 txtEmailexc.setText("");
                 txtTelefoneexc.setText("");
-                txtSituacaoexc.setText("");
+                cmbSituacao.setSelectedIndex(0);
+                
             } catch (Exception ex) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Erro ao excluir: " + ex.getMessage());
             }
@@ -278,6 +282,10 @@ public class ExcluirEstudante extends javax.swing.JFrame {
     private void txtBuscaexcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaexcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaexcActionPerformed
+
+    private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +316,7 @@ public class ExcluirEstudante extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscaexc;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnexcluifechar;
+    private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -324,7 +333,6 @@ public class ExcluirEstudante extends javax.swing.JFrame {
     private javax.swing.JTextField txtMatriculaexc;
     private javax.swing.JTextField txtNomeexc;
     private javax.swing.JTextField txtSemestreexc;
-    private javax.swing.JTextField txtSituacaoexc;
     private javax.swing.JTextField txtTelefoneexc;
     // End of variables declaration//GEN-END:variables
 }

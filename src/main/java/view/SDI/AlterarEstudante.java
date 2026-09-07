@@ -46,7 +46,7 @@ public class AlterarEstudante extends javax.swing.JFrame {
         txtSemestrealt = new javax.swing.JTextField();
         txtEmailalt = new javax.swing.JTextField();
         txtTelefonealt = new javax.swing.JTextField();
-        txtSituacaoalt = new javax.swing.JTextField();
+        cmbSituacao = new javax.swing.JComboBox<>();
         btnSalvaralteracoes = new javax.swing.JButton();
         btnAltfechar = new javax.swing.JButton();
 
@@ -72,7 +72,7 @@ public class AlterarEstudante extends javax.swing.JFrame {
                 .addComponent(txtMatriculabusca, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(txtBuscaralt)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,6 +108,9 @@ public class AlterarEstudante extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("Situação");
 
+        cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -124,19 +127,16 @@ public class AlterarEstudante extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMatriculaalt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                    .addComponent(txtNomealt)
-                                    .addComponent(txtSituacaoalt))
-                                .addComponent(txtCursoalt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtSemestrealt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtEmailalt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtTelefonealt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtMatriculaalt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                        .addComponent(txtNomealt))
+                    .addComponent(txtCursoalt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(txtSemestrealt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(txtEmailalt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(txtTelefonealt, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(cmbSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +168,8 @@ public class AlterarEstudante extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtSituacaoalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         btnSalvaralteracoes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -208,7 +208,7 @@ public class AlterarEstudante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAltfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalvaralteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,7 +233,7 @@ public class AlterarEstudante extends javax.swing.JFrame {
             txtSemestrealt.setText(String.valueOf(e.getSemestre()));
             txtEmailalt.setText(e.getEmail());
             txtTelefonealt.setText(e.getTelefone());
-            txtSituacaoalt.setText(e.getSituacao());
+            cmbSituacao.setSelectedItem(e.getSituacao());
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Estudante não encontrado.");
         }
@@ -245,10 +245,10 @@ public class AlterarEstudante extends javax.swing.JFrame {
             e.setMatricula(txtMatriculaalt.getText());
             e.setNome(txtNomealt.getText());
             e.setCurso(txtCursoalt.getText());
-            e.setSemestre(Integer.parseInt(txtSemestrealt.getText()));
+            e.setSemestre(Integer.valueOf(txtSemestrealt.getText()));
             e.setEmail(txtEmailalt.getText());
             e.setTelefone(txtTelefonealt.getText());
-            e.setSituacao(txtSituacaoalt.getText());
+            e.setSituacao(cmbSituacao.getSelectedItem().toString());
 
             repository.EstudanteDAO dao = new repository.EstudanteDAO();
             dao.alterar(e);
@@ -262,6 +262,10 @@ public class AlterarEstudante extends javax.swing.JFrame {
     private void btnAltfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltfecharActionPerformed
       dispose();
     }//GEN-LAST:event_btnAltfecharActionPerformed
+
+    private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,6 +295,7 @@ public class AlterarEstudante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltfechar;
     private javax.swing.JButton btnSalvaralteracoes;
+    private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -308,7 +313,6 @@ public class AlterarEstudante extends javax.swing.JFrame {
     private javax.swing.JTextField txtMatriculabusca;
     private javax.swing.JTextField txtNomealt;
     private javax.swing.JTextField txtSemestrealt;
-    private javax.swing.JTextField txtSituacaoalt;
     private javax.swing.JTextField txtTelefonealt;
     // End of variables declaration//GEN-END:variables
 }
