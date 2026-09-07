@@ -27,6 +27,9 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
 
         fechar.setBackground(azul);
         fechar.setForeground(java.awt.Color.WHITE);
+        
+        limpar.setBackground(azul);
+        limpar.setForeground(java.awt.Color.WHITE);
 
     }
 
