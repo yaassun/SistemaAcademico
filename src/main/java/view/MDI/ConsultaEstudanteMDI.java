@@ -1,20 +1,17 @@
 package view.MDI;
+
 import model.Estudante;
 import repository.EstudanteDAO;
 
 public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
+
     public ConsultaEstudanteMDI() {
-    initComponents();
-    
-        getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251));
+        initComponents();
         
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
         getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
-        
-    // Fundo da tela
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
+            new java.awt.Color(244, 247, 250)
+        );
 
         java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
@@ -24,7 +21,9 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
         fechar.setBackground(azul);
         fechar.setForeground(java.awt.Color.WHITE);
 
+        txtConsulta.setToolTipText("Digite para consultar");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +33,7 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         txtConsulta = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
@@ -53,6 +53,8 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
         fechar = new javax.swing.JButton();
         cmbSituacao = new javax.swing.JComboBox<>();
         limpar = new javax.swing.JButton();
+        rbMatricula = new javax.swing.JRadioButton();
+        rbNome = new javax.swing.JRadioButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -120,6 +122,18 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
         limpar.setToolTipText("");
         limpar.addActionListener(this::limparActionPerformed);
 
+        buttonGroup1.add(rbMatricula);
+        rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        rbMatricula.setForeground(new java.awt.Color(22, 105, 122));
+        rbMatricula.setText("Matrícula");
+        rbMatricula.addActionListener(this::rbMatriculaActionPerformed);
+
+        buttonGroup1.add(rbNome);
+        rbNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        rbNome.setForeground(new java.awt.Color(22, 105, 122));
+        rbNome.setText("Nome");
+        rbNome.addActionListener(this::rbNomeActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,7 +151,12 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(63, 63, 63)
+                        .addComponent(rbMatricula)
+                        .addGap(59, 59, 59)
+                        .addComponent(rbNome))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -170,7 +189,10 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(rbMatricula)
+                    .addComponent(rbNome))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +229,7 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fechar)
                     .addComponent(limpar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbSituacao, txtTelefone});
@@ -222,37 +244,54 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        String busca = txtConsulta.getText();
+        String busca = txtConsulta.getText().trim();
 
-            EstudanteDAO dao = new EstudanteDAO();
-            java.util.List<Estudante> estudantes = dao.consultar(busca);
+        if (busca.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Digite o termo de busca na caixa de texto.",
+                "Aviso",
+                javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
 
-            if (estudantes.isEmpty()) {
-               javax.swing.JOptionPane.showMessageDialog(
-                   this,
-                   "Estudante não encontrado!"
-               );
-               return;
-            }
+        EstudanteDAO dao = new EstudanteDAO();
+        java.util.List<Estudante> estudantes;
 
-            Estudante estudante = estudantes.get(0);
+        // Verifica qual rádio está selecionado
+        if (rbMatricula.isSelected()) {
+            estudantes = dao.consultar(busca); // Busca por matrícula
+        } else {
+            // Se o seu DAO tiver um método específico para nome, chame-o aqui. 
+            // Exemplo: estudantes = dao.consultarPorNome(busca);
+            estudantes = dao.consultar(busca); 
+        }
 
-            txtMatricula.setText(estudante.getMatricula());
-            txtNome.setText(estudante.getNome());
-            txtCurso.setText(estudante.getCurso());
-            txtSemestre.setText(String.valueOf(estudante.getSemestre()));
-            txtEmail.setText(estudante.getEmail());
-            txtTelefone.setText(estudante.getTelefone());
-            cmbSituacao.setSelectedItem(estudante.getSituacao());
+        if (estudantes == null || estudantes.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Estudante não encontrado!"
+            );
+            return;
+        }
 
+        Estudante estudante = estudantes.get(0);
+
+        txtMatricula.setText(estudante.getMatricula());
+        txtNome.setText(estudante.getNome());
+        txtCurso.setText(estudante.getCurso());
+        txtSemestre.setText(String.valueOf(estudante.getSemestre()));
+        txtEmail.setText(estudante.getEmail());
+        txtTelefone.setText(estudante.getTelefone());
+        cmbSituacao.setSelectedItem(estudante.getSituacao());
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
-         dispose();       
+        dispose();        
     }//GEN-LAST:event_fecharActionPerformed
 
     private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
-
     }//GEN-LAST:event_cmbSituacaoActionPerformed
 
     private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
@@ -264,15 +303,28 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
         txtTelefone.setText("");
         cmbSituacao.setSelectedIndex(0);
         txtConsulta.setText("");
+        txtConsulta.requestFocus();
     }//GEN-LAST:event_limparActionPerformed
 
     private void txtConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultaActionPerformed
-        // TODO add your handling code here:
+        btnConsultarActionPerformed(evt);
     }//GEN-LAST:event_txtConsultaActionPerformed
 
+    private void rbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNomeActionPerformed
+        txtConsulta.setText("");
+        txtConsulta.setToolTipText("Digite o nome para consultar");
+        txtConsulta.requestFocus();
+    }//GEN-LAST:event_rbNomeActionPerformed
+
+    private void rbMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMatriculaActionPerformed
+        txtConsulta.setText("");
+        txtConsulta.setToolTipText("Digite a matrícula para consultar");
+        txtConsulta.requestFocus();
+    }//GEN-LAST:event_rbMatriculaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;
@@ -284,6 +336,8 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JButton limpar;
+    private javax.swing.JRadioButton rbMatricula;
+    private javax.swing.JRadioButton rbNome;
     private javax.swing.JTextField txtConsulta;
     private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtEmail;

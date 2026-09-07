@@ -1,22 +1,21 @@
 package view.MDI;
+
 import model.Estudante;
 import repository.EstudanteDAO;
+import javax.swing.table.TableRowSorter;
+import javax.swing.RowFilter;
 
 public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
+
+    private TableRowSorter<javax.swing.table.DefaultTableModel> sorter;
 
     public ListaEstudanteMDI() {
         initComponents();
         listar();   
         
         getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251));
-        
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
-        
-        // Fundo da tela
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
+            new java.awt.Color(244, 247, 250)
+        );
 
         java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
@@ -26,6 +25,25 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         btnFechar.setBackground(azul);
         btnFechar.setForeground(java.awt.Color.WHITE);
 
+        // Configuração do filtro dinâmico sem travar
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+        sorter = new TableRowSorter<>(modelo);
+        tblEstudantes.setRowSorter(sorter);
+
+        txtFiltro.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
+        });
     }
     
     private void listar() {
@@ -49,6 +67,16 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
             });
         }
     }
+    
+    private void filtrar() {
+        String texto = txtFiltro.getText().trim();
+        if (texto.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            // (?i) torna a busca insensível a maiúsculas/minúsculas
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,6 +94,8 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         tblEstudantes = new javax.swing.JTable();
         btnAtualizar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
 
         label1.setText("label1");
 
@@ -114,6 +144,12 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(this::btnFecharActionPerformed);
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(25, 105, 122));
+        jLabel2.setText("Filtrar:");
+
+        txtFiltro.addActionListener(this::txtFiltroActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +158,12 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,8 +179,11 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -154,21 +198,27 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();        
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         listar();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnFechar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JTable tblEstudantes;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

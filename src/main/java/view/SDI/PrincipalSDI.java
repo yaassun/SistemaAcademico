@@ -178,6 +178,7 @@ public class PrincipalSDI extends javax.swing.JFrame {
                 .addContainerGap(189, Short.MAX_VALUE))
         );
 
+        menuPrincipal.setBackground(new java.awt.Color(22, 105, 122));
         menuPrincipal.setBorder(null);
 
         menuCadastro.setText("Cadastro");

@@ -4,6 +4,9 @@
  */
 package view.SDI;
 
+import javax.swing.table.TableRowSorter;
+import javax.swing.RowFilter;
+
 /**
  *
  * @author alana
@@ -11,12 +14,65 @@ package view.SDI;
 public class ListaEstudante extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ListaEstudante.class.getName());
+    private TableRowSorter<javax.swing.table.DefaultTableModel> sorter;
 
     /**
      * Creates new form ListaEstudante
      */
     public ListaEstudante() {
         initComponents();
+        
+        // Carrega os dados do banco assim que a tela abre
+        carregarDadosIniciais();
+        
+        // Configuração do TableRowSorter para o filtro dinâmico
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        sorter = new TableRowSorter<>(modelo);
+        jTable1.setRowSorter(sorter);
+
+        // Listener para atualizar o filtro instantaneamente conforme o usuário digita
+        txtFiltro.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+        });
+    }
+
+    private void filtrar() {
+        String texto = txtFiltro.getText().trim();
+        if (texto.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            // O "(?i)" torna a busca insensível a maiúsculas e minúsculas
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+        }
+    }
+
+    private void carregarDadosIniciais() {
+        try {
+            repository.EstudanteDAO dao = new repository.EstudanteDAO();
+            java.util.List<model.Estudante> lista = dao.consultar("");
+
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            modelo.setNumRows(0);
+
+            for (model.Estudante e : lista) {
+                modelo.addRow(new Object[]{
+                    e.getMatricula(),
+                    e.getNome(),
+                    e.getCurso(),
+                    e.getSemestre(),
+                    e.getEmail(),
+                    e.getTelefone(),
+                    e.getSituacao()
+                });
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        }
     }
 
     /**
@@ -30,6 +86,8 @@ public class ListaEstudante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -45,6 +103,12 @@ public class ListaEstudante extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(22, 105, 122));
         jLabel1.setText("Lista de Estudantes");
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(22, 105, 122));
+        jLabel2.setText("Filtrar:");
+
+        txtFiltro.addActionListener(this::txtFiltroActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -52,13 +116,20 @@ public class ListaEstudante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
+                .addGap(151, 151, 151)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -129,32 +200,16 @@ public class ListaEstudante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        try {
-            repository.EstudanteDAO dao = new repository.EstudanteDAO();
-            java.util.List<model.Estudante> lista = dao.consultar("");
-
-            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-            modelo.setNumRows(0);
-
-            for (model.Estudante e : lista) {
-                modelo.addRow(new Object[]{
-                    e.getMatricula(),
-                    e.getNome(),
-                    e.getCurso(),
-                    e.getSemestre(),
-                    e.getEmail(),
-                    e.getTelefone(),
-                    e.getSituacao()
-                });
-            }
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
-        }
+        carregarDadosIniciais();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnLstfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstfecharActionPerformed
         dispose();
     }//GEN-LAST:event_btnLstfecharActionPerformed
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,9 +240,11 @@ public class ListaEstudante extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnLstfechar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

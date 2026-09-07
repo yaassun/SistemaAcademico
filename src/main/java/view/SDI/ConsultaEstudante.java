@@ -28,8 +28,8 @@ public class ConsultaEstudante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         rbMatricula = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
         rbNome = new javax.swing.JRadioButton();
         txtConsulta = new javax.swing.JTextField();
         btnConsulta = new javax.swing.JButton();
@@ -50,13 +50,13 @@ public class ConsultaEstudante extends javax.swing.JFrame {
         cmbSituacao = new javax.swing.JComboBox<>();
         btnFechaconsulta = new javax.swing.JToggleButton();
 
+        rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        rbMatricula.setText("Matricula");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultar Estudante");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar por:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(22, 105, 122))); // NOI18N
-
-        rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        rbMatricula.setText("Matricula");
 
         rbNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         rbNome.setText("Nome");
@@ -78,8 +78,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
                         .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(rbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
         );
@@ -87,9 +86,7 @@ public class ConsultaEstudante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbMatricula)
-                    .addComponent(rbNome))
+                .addComponent(rbNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

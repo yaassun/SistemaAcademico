@@ -87,18 +87,24 @@ import repository.EstudanteDAO;
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setText("Matrícula");
 
+        txtMatricula.setEditable(false);
         txtMatricula.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        txtNome.setEditable(false);
         txtNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
+        txtCurso.setEditable(false);
         txtCurso.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         txtCurso.addActionListener(this::txtCursoActionPerformed);
 
+        txtSemestre.setEditable(false);
         txtSemestre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        txtEmail.setEditable(false);
         txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtEmail.addActionListener(this::txtEmailActionPerformed);
 
+        txtTelefone.setEditable(false);
         txtTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -128,6 +134,7 @@ import repository.EstudanteDAO;
         fechar.addActionListener(this::fecharActionPerformed);
 
         cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
+        cmbSituacao.setEnabled(false);
         cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
 
         limpar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -273,6 +280,18 @@ import repository.EstudanteDAO;
     }//GEN-LAST:event_limparActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+        String matricula = txtMatricula.getText().trim();
+        
+        if (matricula.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Busque um estudante primeiro para realizar a exclusão.",
+                "Aviso",
+                javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
         int resposta = javax.swing.JOptionPane.showConfirmDialog(
                 this,
                 "Deseja realmente excluir este estudante?",
@@ -281,29 +300,44 @@ import repository.EstudanteDAO;
         );
 
         if (resposta == javax.swing.JOptionPane.YES_OPTION) {
-            EstudanteDAO dao = new EstudanteDAO();
-            dao.excluir(txtMatricula.getText());
+            try {
+                EstudanteDAO dao = new EstudanteDAO();
+                dao.excluir(matricula);
 
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Estudante excluído com sucesso!"
-            );
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Estudante excluído com sucesso!"
+                );
 
-            txtBusca.setText("");
-            txtMatricula.setText("");
-            txtNome.setText("");
-            txtCurso.setText("");
-            txtSemestre.setText("");
-            txtEmail.setText("");
-            txtTelefone.setText("");
-            cmbSituacao.setSelectedIndex(0);
+                txtBusca.setText("");
+                txtMatricula.setText("");
+                txtNome.setText("");
+                txtCurso.setText("");
+                txtSemestre.setText("");
+                txtEmail.setText("");
+                txtTelefone.setText("");
+                cmbSituacao.setSelectedIndex(0);
+            } catch (Exception ex) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erro ao excluir estudante: " + ex.getMessage(),
+                    "Erro",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
-
-
     }//GEN-LAST:event_excluirActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        String matricula = txtBusca.getText();
+        String matricula = txtBusca.getText().trim();
+
+        if (matricula.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Digite a matrícula para buscar."
+            );
+            return;
+        }
 
         EstudanteDAO dao = new EstudanteDAO();
         var estudantes = dao.consultar(matricula);
