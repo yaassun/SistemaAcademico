@@ -17,8 +17,42 @@ public class PrincipalSDI extends javax.swing.JFrame {
      */
     public PrincipalSDI() {
         initComponents();
-    }
+        
+        getContentPane().setBackground(
+        new java.awt.Color(248, 250, 251));
+        
+        getContentPane().setBackground(
+        new java.awt.Color(244, 247, 250));
+    
+        menuPrincipal.setOpaque(true);
+        menuPrincipal.setBorderPainted(false);
 
+        menuPrincipal.setUI(new javax.swing.plaf.basic.BasicMenuBarUI() {
+            
+        @Override
+            public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
+                g.setColor(new java.awt.Color(72, 159, 181));
+                g.fillRect(0, 0, c.getWidth(), c.getHeight());
+            }
+        });
+        
+        menuCadastro.setOpaque(true);
+        menuCadastro.setBackground(new java.awt.Color(72, 159, 181));
+        menuCadastro.setForeground(java.awt.Color.WHITE);
+
+        menuRelatorio.setOpaque(true);
+        menuRelatorio.setBackground(new java.awt.Color(72, 159, 181));
+        menuRelatorio.setForeground(java.awt.Color.WHITE);
+        
+        menuSistema.setOpaque(true);
+        menuSistema.setBackground(new java.awt.Color(72, 159, 181));
+        menuSistema.setForeground(java.awt.Color.WHITE);
+    
+        menuCadastro.setMargin(new java.awt.Insets(5, 25, 5, 25));
+        menuRelatorio.setMargin(new java.awt.Insets(5, 25, 5, 25));
+        menuSistema.setMargin(new java.awt.Insets(5, 25, 5, 25));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,8 +64,6 @@ public class PrincipalSDI extends javax.swing.JFrame {
 
         principal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        rodape = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         menuPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
@@ -51,27 +83,6 @@ public class PrincipalSDI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("SISTEMA DE CONTROLE ACADÊMICO");
 
-        rodape.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel2.setText("Sistema de Controle Acadêmico ");
-
-        javax.swing.GroupLayout rodapeLayout = new javax.swing.GroupLayout(rodape);
-        rodape.setLayout(rodapeLayout);
-        rodapeLayout.setHorizontalGroup(
-            rodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rodapeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        rodapeLayout.setVerticalGroup(
-            rodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rodapeLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel3.setText("BEM VINDO!");
 
@@ -79,9 +90,8 @@ public class PrincipalSDI extends javax.swing.JFrame {
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
+                .addContainerGap(260, Short.MAX_VALUE)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
@@ -94,23 +104,26 @@ public class PrincipalSDI extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                .addComponent(rodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         menuPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         menuCadastro.setText("Cadastro");
+        menuCadastro.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuCadastro.addActionListener(this::menuCadastroActionPerformed);
 
+        menuCadastrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuCadastrar.setText("Cadastrar Estudante");
         menuCadastrar.addActionListener(this::menuCadastrarActionPerformed);
         menuCadastro.add(menuCadastrar);
 
+        menuAlterar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuAlterar.setText("Alterar Estudante");
         menuAlterar.addActionListener(this::menuAlterarActionPerformed);
         menuCadastro.add(menuAlterar);
 
+        menuExcluir.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuExcluir.setText("Excluir Estudante");
         menuExcluir.addActionListener(this::menuExcluirActionPerformed);
         menuCadastro.add(menuExcluir);
@@ -118,12 +131,15 @@ public class PrincipalSDI extends javax.swing.JFrame {
         menuPrincipal.add(menuCadastro);
 
         menuRelatorio.setText("Consulta/Relatorio");
+        menuRelatorio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuRelatorio.addActionListener(this::menuRelatorioActionPerformed);
 
+        menuConsulta.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuConsulta.setText("Consultar estudante");
         menuConsulta.addActionListener(this::menuConsultaActionPerformed);
         menuRelatorio.add(menuConsulta);
 
+        menuListar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuListar.setText("Listar estudante");
         menuListar.addActionListener(this::menuListarActionPerformed);
         menuRelatorio.add(menuListar);
@@ -131,12 +147,15 @@ public class PrincipalSDI extends javax.swing.JFrame {
         menuPrincipal.add(menuRelatorio);
 
         menuSistema.setText("Sistema");
+        menuSistema.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuSistema.addActionListener(this::menuSistemaActionPerformed);
 
+        menuSobre.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuSobre.setText("Sobre");
         menuSobre.addActionListener(this::menuSobreActionPerformed);
         menuSistema.add(menuSobre);
 
+        menuSair.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         menuSair.setText("Sair");
         menuSair.addActionListener(this::menuSairActionPerformed);
         menuSistema.add(menuSair);
@@ -233,7 +252,6 @@ public class PrincipalSDI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem menuAlterar;
     private javax.swing.JMenuItem menuCadastrar;
@@ -247,6 +265,5 @@ public class PrincipalSDI extends javax.swing.JFrame {
     private javax.swing.JMenu menuSistema;
     private javax.swing.JMenuItem menuSobre;
     private javax.swing.JPanel principal;
-    private javax.swing.JPanel rodape;
     // End of variables declaration//GEN-END:variables
 }
