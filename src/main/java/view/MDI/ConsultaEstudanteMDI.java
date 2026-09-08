@@ -59,6 +59,7 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
         rbMatricula = new javax.swing.JRadioButton();
         rbNome = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -127,13 +128,11 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(rbMatricula);
         rbMatricula.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        rbMatricula.setForeground(new java.awt.Color(22, 105, 122));
         rbMatricula.setText("Matrícula");
         rbMatricula.addActionListener(this::rbMatriculaActionPerformed);
 
         buttonGroup1.add(rbNome);
         rbNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        rbNome.setForeground(new java.awt.Color(22, 105, 122));
         rbNome.setText("Nome");
         rbNome.addActionListener(this::rbNomeActionPerformed);
 
@@ -154,16 +153,6 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(63, 63, 63)
-                        .addComponent(rbMatricula)
-                        .addGap(59, 59, 59)
-                        .addComponent(rbNome))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsultar))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(limpar)
@@ -180,7 +169,18 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
                                 .addComponent(txtEmail)
                                 .addComponent(txtSemestre)
                                 .addComponent(txtTelefone)
-                                .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(28, 28, 28)
+                                .addComponent(rbMatricula)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rbNome))
+                            .addComponent(txtConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnConsultar)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -310,7 +310,7 @@ public class ConsultaEstudanteMDI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_limparActionPerformed
 
     private void txtConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultaActionPerformed
-        btnConsultarActionPerformed(evt);
+        
     }//GEN-LAST:event_txtConsultaActionPerformed
 
     private void rbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNomeActionPerformed

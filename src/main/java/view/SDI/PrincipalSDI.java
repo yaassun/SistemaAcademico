@@ -1,53 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view.SDI;
 
-/**
- *
- * @author yasmi
- */
 public class PrincipalSDI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PrincipalSDI.class.getName());
 
-    /**
-     * Creates new form PrincipalSDI
-     */
     public PrincipalSDI() {
         initComponents();
-        
-        getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251));
-        
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
-    
+        java.awt.Color azul = new java.awt.Color(72, 159, 181);
+
         menuPrincipal.setOpaque(true);
         menuPrincipal.setBorderPainted(false);
-
         menuPrincipal.setUI(new javax.swing.plaf.basic.BasicMenuBarUI() {
-            
-        @Override
+            @Override
             public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
-                g.setColor(new java.awt.Color(72, 159, 181));
+                g.setColor(azul);
                 g.fillRect(0, 0, c.getWidth(), c.getHeight());
             }
         });
-        
-        menuCadastro.setOpaque(true);
-        menuCadastro.setBackground(new java.awt.Color(72, 159, 181));
-        menuCadastro.setForeground(java.awt.Color.WHITE);
 
-        menuRelatorio.setOpaque(true);
-        menuRelatorio.setBackground(new java.awt.Color(72, 159, 181));
+        menuCadastro.setForeground(java.awt.Color.WHITE);
         menuRelatorio.setForeground(java.awt.Color.WHITE);
-        
-        menuSistema.setOpaque(true);
-        menuSistema.setBackground(new java.awt.Color(72, 159, 181));
         menuSistema.setForeground(java.awt.Color.WHITE);
-    
+
         menuCadastro.setMargin(new java.awt.Insets(5, 25, 5, 25));
         menuRelatorio.setMargin(new java.awt.Insets(5, 25, 5, 25));
         menuSistema.setMargin(new java.awt.Insets(5, 25, 5, 25));
@@ -84,6 +58,8 @@ public class PrincipalSDI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de controle acadêmico");
+
+        principal.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(74, 74, 74));
@@ -180,9 +156,11 @@ public class PrincipalSDI extends javax.swing.JFrame {
 
         menuPrincipal.setBackground(new java.awt.Color(22, 105, 122));
         menuPrincipal.setBorder(null);
+        menuPrincipal.setMinimumSize(new java.awt.Dimension(251, 35));
+        menuPrincipal.setPreferredSize(new java.awt.Dimension(251, 35));
 
         menuCadastro.setText("Cadastro");
-        menuCadastro.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        menuCadastro.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         menuCadastro.addActionListener(this::menuCadastroActionPerformed);
 
         menuCadastrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -203,7 +181,7 @@ public class PrincipalSDI extends javax.swing.JFrame {
         menuPrincipal.add(menuCadastro);
 
         menuRelatorio.setText("Consulta/Relatorio");
-        menuRelatorio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        menuRelatorio.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         menuRelatorio.addActionListener(this::menuRelatorioActionPerformed);
 
         menuConsulta.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -219,7 +197,7 @@ public class PrincipalSDI extends javax.swing.JFrame {
         menuPrincipal.add(menuRelatorio);
 
         menuSistema.setText("Sistema");
-        menuSistema.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        menuSistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         menuSistema.addActionListener(this::menuSistemaActionPerformed);
 
         menuSobre.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -251,18 +229,17 @@ public class PrincipalSDI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarActionPerformed
-          CadastroEstudante tela = new CadastroEstudante();
-          tela.setVisible(true);
+        CadastroEstudanteSDI tela = new CadastroEstudanteSDI();
+        tela.setVisible(true);
     }//GEN-LAST:event_menuCadastrarActionPerformed
 
     private void menuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaActionPerformed
-      ConsultaEstudante tela = new ConsultaEstudante();
-      tela.setVisible(true);
+        ConsultaEstudanteSDI tela = new ConsultaEstudanteSDI();
+        tela.setVisible(true);
     }//GEN-LAST:event_menuConsultaActionPerformed
 
     private void menuListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarActionPerformed
-        
-        ListaEstudante tela = new ListaEstudante();
+        ListaEstudanteSDI tela = new ListaEstudanteSDI();
         tela.setVisible(true);
     }//GEN-LAST:event_menuListarActionPerformed
 
@@ -275,12 +252,12 @@ public class PrincipalSDI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuRelatorioActionPerformed
 
     private void menuAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlterarActionPerformed
-        AlterarEstudante tela = new AlterarEstudante();
+        AlterarEstudanteSDI tela = new AlterarEstudanteSDI();
         tela.setVisible(true);
     }//GEN-LAST:event_menuAlterarActionPerformed
 
     private void menuExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirActionPerformed
-        ExcluirEstudante tela = new ExcluirEstudante();
+        ExcluirEstudanteSDI tela = new ExcluirEstudanteSDI();
         tela.setVisible(true);
     }//GEN-LAST:event_menuExcluirActionPerformed
 
@@ -289,7 +266,7 @@ public class PrincipalSDI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSistemaActionPerformed
 
     private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
-        SobreSistema tela = new SobreSistema();
+        SobreSistemaSDI tela = new SobreSistemaSDI();
         tela.setVisible(true);
     }//GEN-LAST:event_menuSobreActionPerformed
 

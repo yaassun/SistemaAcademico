@@ -1,32 +1,25 @@
 package view.MDI;
-import model.Estudante;
 import repository.EstudanteDAO;
 
 public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
     public CadastroEstudanteMDI() {
         initComponents();
-        getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251)
-        );
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250)
-        );
-        // Fundo da tela
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
         getContentPane().setBackground(
             new java.awt.Color(244, 247, 250)
         );
 
         java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-        limpar.setBackground(azul);
-        limpar.setForeground(java.awt.Color.WHITE);
-
         cadastrar.setBackground(azul);
         cadastrar.setForeground(java.awt.Color.WHITE);
 
         fechar.setBackground(azul);
         fechar.setForeground(java.awt.Color.WHITE);
-}
+        
+        limpar.setBackground(azul);
+        limpar.setForeground(java.awt.Color.WHITE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +62,7 @@ public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setBackground(new java.awt.Color(102, 153, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -177,7 +170,7 @@ public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
                                     .addComponent(limpar)
                                     .addGap(37, 37, 37)
                                     .addComponent(fechar))))
-                        .addContainerGap(130, Short.MAX_VALUE))))
+                        .addContainerGap(60, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cmbSituacao, txtCurso, txtEmail, txtMatricula, txtNome, txtSemestre, txtTelefone});
@@ -225,7 +218,7 @@ public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
                     .addComponent(cadastrar)
                     .addComponent(limpar)
                     .addComponent(fechar))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbSituacao, txtCurso, txtEmail, txtMatricula, txtNome, txtSemestre, txtTelefone});

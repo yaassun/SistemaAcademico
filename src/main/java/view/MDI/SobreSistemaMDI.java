@@ -3,23 +3,15 @@ package view.MDI;
 public class SobreSistemaMDI extends javax.swing.JInternalFrame {
     public SobreSistemaMDI() {
         initComponents();
-          
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
         getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251));
-        
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
-        
-        // Fundo da tela
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
+            new java.awt.Color(244, 247, 250)
+        );
 
         java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-        btnFechar.setBackground(azul);
-        btnFechar.setForeground(java.awt.Color.WHITE);
-
-       
+        fechar.setBackground(azul);
+        fechar.setForeground(java.awt.Color.WHITE);
     }
 
     /**
@@ -40,11 +32,12 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnFechar = new javax.swing.JButton();
+        fechar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 105, 122));
         jLabel1.setText("Sistema  De Controle Academico");
 
@@ -72,18 +65,18 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setText("Setembro/2026");
 
-        btnFechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnFechar.setText("Fechar");
-        btnFechar.addActionListener(this::btnFecharActionPerformed);
+        fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        fechar.setText("Fechar");
+        fechar.addActionListener(this::fecharActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
@@ -96,21 +89,19 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel7))
                             .addComponent(jLabel9)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(btnFechar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 93, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(85, 85, 85))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fechar)
+                .addGap(136, 136, 136))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6))
@@ -126,21 +117,21 @@ public class SobreSistemaMDI extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9))
-                .addGap(49, 49, 49)
-                .addComponent(btnFechar)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(fechar)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
         dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFecharActionPerformed
+    }//GEN-LAST:event_fecharActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

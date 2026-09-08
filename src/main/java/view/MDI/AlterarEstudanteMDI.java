@@ -5,32 +5,24 @@ import repository.EstudanteDAO;
 public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
     public AlterarEstudanteMDI() {
         initComponents();
-        
-        getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251)
-        );
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250)
-        );
-        // Fundo da tela
-        getContentPane().setBackground(
-            new java.awt.Color(244, 247, 250)
-        );
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
+            getContentPane().setBackground(
+                new java.awt.Color(244, 247, 250)
+            );
 
-        java.awt.Color azul = new java.awt.Color(22, 105, 122);
+            java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-        btnBuscar.setBackground(azul);
-        btnBuscar.setForeground(java.awt.Color.WHITE);
+            alterar.setBackground(azul);
+            alterar.setForeground(java.awt.Color.WHITE);
 
-        btnAlterar.setBackground(azul);
-        btnAlterar.setForeground(java.awt.Color.WHITE);
+            buscar.setBackground(azul);
+            buscar.setForeground(java.awt.Color.WHITE);
+            
+            fechar.setBackground(azul);
+            fechar.setForeground(java.awt.Color.WHITE);
 
-        fechar.setBackground(azul);
-        fechar.setForeground(java.awt.Color.WHITE);
-        
-        limpar.setBackground(azul);
-        limpar.setForeground(java.awt.Color.WHITE);
-
+            limpar.setBackground(azul);
+            limpar.setForeground(java.awt.Color.WHITE);
     }
 
     /**
@@ -45,7 +37,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
         label1 = new javax.swing.JLabel();
@@ -60,11 +52,12 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextField();
         txtCurso = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
-        btnAlterar = new javax.swing.JButton();
+        alterar = new javax.swing.JButton();
         fechar = new javax.swing.JButton();
         cmbSituacao = new javax.swing.JComboBox<>();
         limpar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -80,9 +73,9 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
         txtBusca.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBusca.addActionListener(this::txtBuscaActionPerformed);
 
-        btnBuscar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+        buscar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        buscar.setText("Buscar");
+        buscar.addActionListener(this::buscarActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 105, 122));
@@ -121,9 +114,9 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
 
         txtTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        btnAlterar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnAlterar.setText("Salvar Alterações");
-        btnAlterar.addActionListener(this::btnAlterarActionPerformed);
+        alterar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        alterar.setText("Salvar Alterações");
+        alterar.addActionListener(this::alterarActionPerformed);
 
         fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         fechar.setText("Fechar");
@@ -145,7 +138,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAlterar)
+                        .addComponent(alterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(limpar)
                         .addGap(29, 29, 29)
@@ -184,8 +177,8 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                                     .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscar)
-                .addGap(113, 113, 113))
+                .addComponent(buscar)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +189,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(buscar))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -229,7 +222,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                     .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlterar)
+                    .addComponent(alterar)
                     .addComponent(fechar)
                     .addComponent(limpar))
                 .addGap(27, 27, 27))
@@ -237,9 +230,9 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbSituacao, txtTelefone});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuscar, txtBusca});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buscar, txtBusca});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAlterar, fechar, limpar});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {alterar, fechar, limpar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -248,7 +241,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
         dispose();// TODO add your handling code here:
     }//GEN-LAST:event_fecharActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         String matricula = txtBusca.getText();
 
         EstudanteDAO dao = new EstudanteDAO();
@@ -271,9 +264,9 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
         txtEmail.setText(estudante.getEmail());
         txtTelefone.setText(estudante.getTelefone());
         cmbSituacao.setSelectedItem(estudante.getSituacao());
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_buscarActionPerformed
 
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
         try {
                 Estudante estudante = new Estudante();
 
@@ -299,7 +292,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                     "O semestre deve ser um número."
                 );
         }
-    }//GEN-LAST:event_btnAlterarActionPerformed
+    }//GEN-LAST:event_alterarActionPerformed
 
     private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
         // TODO add your handling code here:
@@ -322,8 +315,8 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton alterar;
+    private javax.swing.JButton buscar;
     private javax.swing.JComboBox<String> cmbSituacao;
     private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;

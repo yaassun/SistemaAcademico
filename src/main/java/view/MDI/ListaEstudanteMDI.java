@@ -11,19 +11,20 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
 
     public ListaEstudanteMDI() {
         initComponents();
-        listar();   
-        
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
         getContentPane().setBackground(
             new java.awt.Color(244, 247, 250)
         );
 
         java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-        btnAtualizar.setBackground(azul);
-        btnAtualizar.setForeground(java.awt.Color.WHITE);
+        atualizar.setBackground(azul);
+        atualizar.setForeground(java.awt.Color.WHITE);
 
-        btnFechar.setBackground(azul);
-        btnFechar.setForeground(java.awt.Color.WHITE);
+        fechar.setBackground(azul);
+        fechar.setForeground(java.awt.Color.WHITE);
+
+        listar();   
 
         // Configuração do filtro dinâmico sem travar
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
@@ -92,8 +93,8 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEstudantes = new javax.swing.JTable();
-        btnAtualizar = new javax.swing.JButton();
-        btnFechar = new javax.swing.JButton();
+        atualizar = new javax.swing.JButton();
+        fechar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
 
@@ -136,13 +137,13 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
         tblEstudantes.setRowHeight(25);
         jScrollPane1.setViewportView(tblEstudantes);
 
-        btnAtualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnAtualizar.setText("Atualizar");
-        btnAtualizar.addActionListener(this::btnAtualizarActionPerformed);
+        atualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        atualizar.setText("Atualizar");
+        atualizar.addActionListener(this::atualizarActionPerformed);
 
-        btnFechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnFechar.setText("Fechar");
-        btnFechar.addActionListener(this::btnFecharActionPerformed);
+        fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        fechar.setText("Fechar");
+        fechar.addActionListener(this::fecharActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 105, 122));
@@ -167,13 +168,13 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAtualizar)
+                .addComponent(atualizar)
                 .addGap(36, 36, 36)
-                .addComponent(btnFechar)
+                .addComponent(fechar)
                 .addGap(257, 257, 257))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizar, btnFechar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {atualizar, fechar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,23 +188,23 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFechar)
-                    .addComponent(btnAtualizar))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(fechar)
+                    .addComponent(atualizar))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizar, btnFechar});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {atualizar, fechar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
         dispose();        
-    }//GEN-LAST:event_btnFecharActionPerformed
+    }//GEN-LAST:event_fecharActionPerformed
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         listar();
-    }//GEN-LAST:event_btnAtualizarActionPerformed
+    }//GEN-LAST:event_atualizarActionPerformed
 
     private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
@@ -211,8 +212,8 @@ public class ListaEstudanteMDI extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizar;
-    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton atualizar;
+    private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

@@ -5,32 +5,24 @@ import repository.EstudanteDAO;
     public class ExcluirEstudanteMDI extends javax.swing.JInternalFrame {
         public ExcluirEstudanteMDI() {
             initComponents();
-
-            getContentPane().setBackground(
-            new java.awt.Color(248, 250, 251)
-            );
-            getContentPane().setBackground(
-            new java.awt.Color(244, 247, 250)
-            );
-            // Fundo da tela
+            // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
             getContentPane().setBackground(
                 new java.awt.Color(244, 247, 250)
             );
 
             java.awt.Color azul = new java.awt.Color(22, 105, 122);
 
-            buscar.setBackground(azul);
-            buscar.setForeground(java.awt.Color.WHITE);
-
             excluir.setBackground(azul);
             excluir.setForeground(java.awt.Color.WHITE);
 
+            buscar.setBackground(azul);
+            buscar.setForeground(java.awt.Color.WHITE);
+            
             fechar.setBackground(azul);
             fechar.setForeground(java.awt.Color.WHITE);
-            
+
             limpar.setBackground(azul);
             limpar.setForeground(java.awt.Color.WHITE);
-
         }
 
     /**
@@ -65,6 +57,7 @@ import repository.EstudanteDAO;
         cmbSituacao = new javax.swing.JComboBox<>();
         limpar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -90,24 +83,18 @@ import repository.EstudanteDAO;
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setText("Matrícula");
 
-        txtMatricula.setEditable(false);
         txtMatricula.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        txtNome.setEditable(false);
         txtNome.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        txtCurso.setEditable(false);
         txtCurso.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         txtCurso.addActionListener(this::txtCursoActionPerformed);
 
-        txtSemestre.setEditable(false);
         txtSemestre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        txtEmail.setEditable(false);
         txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtEmail.addActionListener(this::txtEmailActionPerformed);
 
-        txtTelefone.setEditable(false);
         txtTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -137,7 +124,6 @@ import repository.EstudanteDAO;
         fechar.addActionListener(this::fecharActionPerformed);
 
         cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
-        cmbSituacao.setEnabled(false);
         cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
 
         limpar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -239,7 +225,7 @@ import repository.EstudanteDAO;
                     .addComponent(fechar)
                     .addComponent(limpar)
                     .addComponent(excluir))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbSituacao, txtTelefone});

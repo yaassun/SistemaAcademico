@@ -1,22 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view.SDI;
 
-/**
- *
- * @author alana
- */
-public class CadastroEstudante extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CadastroEstudante.class.getName());
+import repository.EstudanteDAO;
 
-    /**
-     * Creates new form CadastroEstudante
-     */
-    public CadastroEstudante() {
+public class CadastroEstudanteSDI extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CadastroEstudanteSDI.class.getName());
+
+    public CadastroEstudanteSDI() {
         initComponents();
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
+        getContentPane().setBackground(
+            new java.awt.Color(244, 247, 250)
+        );
+
+        java.awt.Color azul = new java.awt.Color(22, 105, 122);
+
+        cadastrar.setBackground(azul);
+        cadastrar.setForeground(java.awt.Color.WHITE);
+
+        fechar.setBackground(azul);
+        fechar.setForeground(java.awt.Color.WHITE);
+        
+        limpar.setBackground(azul);
+        limpar.setForeground(java.awt.Color.WHITE);
     }
 
     /**
@@ -44,9 +50,9 @@ public class CadastroEstudante extends javax.swing.JFrame {
         txtTelefone = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cmbSituacao = new javax.swing.JComboBox<>();
-        btnCadastrar = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
-        btnFechar = new javax.swing.JButton();
+        fechar = new javax.swing.JButton();
+        limpar = new javax.swing.JButton();
+        cadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Estudantes");
@@ -90,6 +96,21 @@ public class CadastroEstudante extends javax.swing.JFrame {
         cmbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Formado", "Trancado", "Evadido", "Jubilado" }));
         cmbSituacao.addActionListener(this::cmbSituacaoActionPerformed);
 
+        fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        fechar.setText("Fechar");
+        fechar.setToolTipText("");
+        fechar.addActionListener(this::fecharActionPerformed);
+
+        limpar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        limpar.setText("Limpar");
+        limpar.setToolTipText("");
+        limpar.addActionListener(this::limparActionPerformed);
+
+        cadastrar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        cadastrar.setText("Cadastrar");
+        cadastrar.setToolTipText("");
+        cadastrar.addActionListener(this::cadastrarActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,6 +118,7 @@ public class CadastroEstudante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cadastrar)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -109,7 +131,13 @@ public class CadastroEstudante extends javax.swing.JFrame {
                                     .addComponent(txtMatricula))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(50, 50, 50)
-                                    .addComponent(cmbSituacao, 0, 252, Short.MAX_VALUE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(limpar)
+                                            .addGap(62, 62, 62)
+                                            .addComponent(fechar))
+                                        .addComponent(cmbSituacao, 0, 252, Short.MAX_VALUE)))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(56, 56, 56)
@@ -129,7 +157,7 @@ public class CadastroEstudante extends javax.swing.JFrame {
                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtTelefone)
                                 .addComponent(txtSemestre)))))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,36 +192,18 @@ public class CadastroEstudante extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(cmbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechar)
+                    .addComponent(limpar)
+                    .addComponent(cadastrar))
+                .addGap(33, 33, 33))
         );
-
-        btnCadastrar.setBackground(new java.awt.Color(0, 153, 153));
-        btnCadastrar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(this::btnCadastrarActionPerformed);
-
-        btnLimpar.setBackground(new java.awt.Color(0, 153, 153));
-        btnLimpar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnLimpar.setText("Limpar");
-        btnLimpar.addActionListener(this::btnLimparActionPerformed);
-
-        btnFechar.setBackground(new java.awt.Color(0, 153, 153));
-        btnFechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnFechar.setText("Fechar");
-        btnFechar.addActionListener(this::btnFecharActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,56 +212,12 @@ public class CadastroEstudante extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        try {
-            model.Estudante estudante = new model.Estudante();
-            estudante.setMatricula(txtMatricula.getText());
-            estudante.setNome(txtNome.getText());
-            estudante.setCurso(txtCurso.getText());
-            estudante.setSemestre(Integer.valueOf(txtSemestre.getText()));
-            estudante.setEmail(txtEmail.getText());
-            estudante.setTelefone(txtTelefone.getText());
-            estudante.setSituacao(cmbSituacao.getSelectedItem().toString());
-            
-            repository.EstudanteDAO dao = new repository.EstudanteDAO();
-            dao.inserir(estudante);
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Estudante cadastrado com sucesso!");
-            btnLimparActionPerformed(evt);
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "O semestre deve ser um número inteiro válido.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        txtMatricula.setText("");
-        txtNome.setText("");
-        txtCurso.setText("");
-        txtSemestre.setText("");
-        txtEmail.setText("");
-        txtTelefone.setText("");
-        cmbSituacao.setSelectedIndex(0);
-    }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void txtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCursoActionPerformed
         // TODO add your handling code here:
@@ -272,6 +238,47 @@ public class CadastroEstudante extends javax.swing.JFrame {
     private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSituacaoActionPerformed
+
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_fecharActionPerformed
+
+    private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
+        txtMatricula.setText("");
+        txtNome.setText("");
+        txtCurso.setText("");
+        txtSemestre.setText("");
+        txtEmail.setText("");
+        txtTelefone.setText("");
+        cmbSituacao.setSelectedIndex(0);
+    }//GEN-LAST:event_limparActionPerformed
+
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+        try {
+            model.Estudante estudante = new model.Estudante();
+            estudante.setMatricula(txtMatricula.getText());
+            estudante.setNome(txtNome.getText());
+            estudante.setCurso(txtCurso.getText());
+            estudante.setSemestre(Integer.valueOf(txtSemestre.getText()));
+            estudante.setEmail(txtEmail.getText());
+            estudante.setTelefone(txtTelefone.getText());
+            estudante.setSituacao(cmbSituacao.getSelectedItem().toString());
+
+            EstudanteDAO dao = new EstudanteDAO();
+            dao.inserir(estudante);
+
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Estudante cadastrado com sucesso!"
+            );
+
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "O semestre deve ser um número."
+            );
+        }
+    }//GEN-LAST:event_cadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,14 +302,13 @@ public class CadastroEstudante extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CadastroEstudante().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new CadastroEstudanteSDI().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnFechar;
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton cadastrar;
     private javax.swing.JComboBox<String> cmbSituacao;
+    private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,6 +318,7 @@ public class CadastroEstudante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton limpar;
     private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMatricula;

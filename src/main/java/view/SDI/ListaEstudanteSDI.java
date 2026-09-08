@@ -1,79 +1,85 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view.SDI;
 
 import javax.swing.table.TableRowSorter;
 import javax.swing.RowFilter;
+import model.Estudante;
+import repository.EstudanteDAO;
 
-/**
- *
- * @author alana
- */
-public class ListaEstudante extends javax.swing.JFrame {
+public class ListaEstudanteSDI extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ListaEstudante.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ListaEstudanteSDI.class.getName());
     private TableRowSorter<javax.swing.table.DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListaEstudante
-     */
-    public ListaEstudante() {
+    public ListaEstudanteSDI() {
         initComponents();
-        
-        // Carrega os dados do banco assim que a tela abre
-        carregarDadosIniciais();
-        
-        // Configuração do TableRowSorter para o filtro dinâmico
-        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-        sorter = new TableRowSorter<>(modelo);
-        jTable1.setRowSorter(sorter);
+        // Configurações visuais e estado inicial (Fora do initComponents para proteger o Design)
+        getContentPane().setBackground(
+            new java.awt.Color(244, 247, 250)
+        );
 
-        // Listener para atualizar o filtro instantaneamente conforme o usuário digita
+        java.awt.Color azul = new java.awt.Color(22, 105, 122);
+
+        atualizar.setBackground(azul);
+        atualizar.setForeground(java.awt.Color.WHITE);
+
+        fechar.setBackground(azul);
+        fechar.setForeground(java.awt.Color.WHITE);
+        
+        listar();   
+
+        // Configuração do filtro dinâmico sem travar
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+        sorter = new TableRowSorter<>(modelo);
+        tblEstudantes.setRowSorter(sorter);
+
         txtFiltro.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
-            public void insertUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
             @Override
-            public void removeUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
             @Override
-            public void changedUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filtrar();
+            }
         });
     }
+    
+    private void listar() {
+        EstudanteDAO dao = new EstudanteDAO();
+        var estudantes = dao.listar();
 
+        javax.swing.table.DefaultTableModel modelo =
+            (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+
+        modelo.setRowCount(0);
+
+        for (Estudante estudante : estudantes) {
+            modelo.addRow(new Object[]{
+                estudante.getMatricula(),
+                estudante.getNome(),
+                estudante.getCurso(),
+                estudante.getSemestre(),
+                estudante.getEmail(),
+                estudante.getTelefone(),
+                estudante.getSituacao()
+            });
+        }
+    }
+    
     private void filtrar() {
         String texto = txtFiltro.getText().trim();
         if (texto.length() == 0) {
             sorter.setRowFilter(null);
         } else {
-            // O "(?i)" torna a busca insensível a maiúsculas e minúsculas
+            // (?i) torna a busca insensível a maiúsculas/minúsculas
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
         }
     }
 
-    private void carregarDadosIniciais() {
-        try {
-            repository.EstudanteDAO dao = new repository.EstudanteDAO();
-            java.util.List<model.Estudante> lista = dao.consultar("");
-
-            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-            modelo.setNumRows(0);
-
-            for (model.Estudante e : lista) {
-                modelo.addRow(new Object[]{
-                    e.getMatricula(),
-                    e.getNome(),
-                    e.getCurso(),
-                    e.getSemestre(),
-                    e.getEmail(),
-                    e.getTelefone(),
-                    e.getSituacao()
-                });
-            }
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,10 +95,10 @@ public class ListaEstudante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnLstfechar = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEstudantes = new javax.swing.JTable();
+        atualizar = new javax.swing.JButton();
+        fechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Estudante");
@@ -103,7 +109,7 @@ public class ListaEstudante extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(22, 105, 122));
         jLabel1.setText("Lista de Estudantes");
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(22, 105, 122));
         jLabel2.setText("Filtrar:");
 
@@ -119,8 +125,8 @@ public class ListaEstudante extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,41 +135,75 @@ public class ListaEstudante extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEstudantes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        tblEstudantes.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        tblEstudantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Nome", "Curso", "Semestre", "Email", "Telefone", "Situacao"
+                "Matrícula", "Nome", "Curso", "Semestre", "Email", "Telefone", "Situação"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblEstudantes.setRowHeight(25);
+        jScrollPane2.setViewportView(tblEstudantes);
+
+        atualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        atualizar.setText("Atualizar");
+        atualizar.addActionListener(this::atualizarActionPerformed);
+
+        fechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        fechar.setText("Fechar");
+        fechar.addActionListener(this::fecharActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atualizar)
+                .addGap(54, 54, 54)
+                .addComponent(fechar)
+                .addGap(270, 270, 270))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {atualizar, fechar});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atualizar)
+                    .addComponent(fechar))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        btnLstfechar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnLstfechar.setText("Fechar");
-        btnLstfechar.addActionListener(this::btnLstfecharActionPerformed);
-
-        btnAtualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnAtualizar.setText("Atualizar");
-        btnAtualizar.addActionListener(this::btnAtualizarActionPerformed);
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {atualizar, fechar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,12 +215,6 @@ public class ListaEstudante extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLstfechar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,27 +223,23 @@ public class ListaEstudante extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLstfechar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        carregarDadosIniciais();
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
-    private void btnLstfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstfecharActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnLstfecharActionPerformed
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+        listar();
+    }//GEN-LAST:event_atualizarActionPerformed
 
     private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltroActionPerformed
+
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_fecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,18 +263,18 @@ public class ListaEstudante extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ListaEstudante().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ListaEstudanteSDI().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizar;
-    private javax.swing.JButton btnLstfechar;
+    private javax.swing.JButton atualizar;
+    private javax.swing.JButton fechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblEstudantes;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

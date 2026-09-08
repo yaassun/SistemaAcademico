@@ -6,50 +6,29 @@ public class PrincipalMDI extends javax.swing.JFrame {
 
     public PrincipalMDI() {
         initComponents();
-        
-        getContentPane().setBackground(
-        new java.awt.Color(248, 250, 251));
-        
-        getContentPane().setBackground(
-        new java.awt.Color(244, 247, 250));
-    
+        java.awt.Color azul = new java.awt.Color(72, 159, 181);
         jDesktopPane9.setBackground(new java.awt.Color(248, 250, 251));
+
         menu.setOpaque(true);
         menu.setBorderPainted(false);
-
         menu.setUI(new javax.swing.plaf.basic.BasicMenuBarUI() {
-            
-        @Override
+            @Override
             public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
-                g.setColor(new java.awt.Color(72, 159, 181));
+                g.setColor(azul);
                 g.fillRect(0, 0, c.getWidth(), c.getHeight());
             }
         });
-        cadastro.setOpaque(true);
-        cadastro.setBackground(new java.awt.Color(72, 159, 181));
+
         cadastro.setForeground(java.awt.Color.WHITE);
-
-        consulta.setOpaque(true);
-        consulta.setBackground(new java.awt.Color(72, 159, 181));
         consulta.setForeground(java.awt.Color.WHITE);
-        
-        relatorio.setOpaque(true);
-        relatorio.setBackground(new java.awt.Color(72, 159, 181));
         relatorio.setForeground(java.awt.Color.WHITE);
-
-        sistema.setOpaque(true);
-        sistema.setBackground(new java.awt.Color(72, 159, 181));
         sistema.setForeground(java.awt.Color.WHITE);
-    
+
         cadastro.setMargin(new java.awt.Insets(5, 25, 5, 25));
         consulta.setMargin(new java.awt.Insets(5, 25, 5, 25));
         relatorio.setMargin(new java.awt.Insets(5, 25, 5, 25));
         sistema.setMargin(new java.awt.Insets(5, 25, 5, 25));
-}
-    
- 
-    
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,16 +55,16 @@ public class PrincipalMDI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        Cadastrar = new javax.swing.JMenuItem();
+        Alterar = new javax.swing.JMenuItem();
+        Excluir = new javax.swing.JMenuItem();
         consulta = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        Consultar = new javax.swing.JMenuItem();
         relatorio = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        Listar = new javax.swing.JMenuItem();
         sistema = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        Sobre = new javax.swing.JMenuItem();
+        Sair = new javax.swing.JMenuItem();
 
         jMenuItem8.setText("jMenuItem8");
 
@@ -134,7 +113,7 @@ public class PrincipalMDI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jLabel7)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,21 +188,21 @@ public class PrincipalMDI extends javax.swing.JFrame {
         cadastro.setText("Cadastro");
         cadastro.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem1.setText("Cadastrar Estudante");
-        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
-        cadastro.add(jMenuItem1);
+        Cadastrar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Cadastrar.setText("Cadastrar Estudante");
+        Cadastrar.addActionListener(this::CadastrarActionPerformed);
+        cadastro.add(Cadastrar);
 
-        jMenuItem2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem2.setText("Alterar Estudante");
-        jMenuItem2.setActionCommand("");
-        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
-        cadastro.add(jMenuItem2);
+        Alterar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Alterar.setText("Alterar Estudante");
+        Alterar.setActionCommand("");
+        Alterar.addActionListener(this::AlterarActionPerformed);
+        cadastro.add(Alterar);
 
-        jMenuItem3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem3.setText("Excluir Estudante");
-        jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
-        cadastro.add(jMenuItem3);
+        Excluir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Excluir.setText("Excluir Estudante");
+        Excluir.addActionListener(this::ExcluirActionPerformed);
+        cadastro.add(Excluir);
 
         menu.add(cadastro);
 
@@ -231,20 +210,20 @@ public class PrincipalMDI extends javax.swing.JFrame {
         consulta.setText("Consulta");
         consulta.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem4.setText("Consultar Estudante");
-        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
-        consulta.add(jMenuItem4);
+        Consultar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Consultar.setText("Consultar Estudante");
+        Consultar.addActionListener(this::ConsultarActionPerformed);
+        consulta.add(Consultar);
 
         menu.add(consulta);
 
         relatorio.setText("Relatório");
         relatorio.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jMenuItem5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem5.setText("Listar Estudante");
-        jMenuItem5.addActionListener(this::jMenuItem5ActionPerformed);
-        relatorio.add(jMenuItem5);
+        Listar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Listar.setText("Listar Estudante");
+        Listar.addActionListener(this::ListarActionPerformed);
+        relatorio.add(Listar);
 
         menu.add(relatorio);
 
@@ -252,15 +231,15 @@ public class PrincipalMDI extends javax.swing.JFrame {
         sistema.setText("Sistema");
         sistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jMenuItem6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem6.setText("Sobre");
-        jMenuItem6.addActionListener(this::jMenuItem6ActionPerformed);
-        sistema.add(jMenuItem6);
+        Sobre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Sobre.setText("Sobre");
+        Sobre.addActionListener(this::SobreActionPerformed);
+        sistema.add(Sobre);
 
-        jMenuItem7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jMenuItem7.setText("Sair");
-        jMenuItem7.addActionListener(this::jMenuItem7ActionPerformed);
-        sistema.add(jMenuItem7);
+        Sair.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        Sair.setText("Sair");
+        Sair.addActionListener(this::SairActionPerformed);
+        sistema.add(Sair);
 
         menu.add(sistema);
 
@@ -286,45 +265,45 @@ public class PrincipalMDI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_SairActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void SobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreActionPerformed
         SobreSistemaMDI tela = new SobreSistemaMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_SobreActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
         ListaEstudanteMDI tela = new ListaEstudanteMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_ListarActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
         ConsultaEstudanteMDI tela = new ConsultaEstudanteMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_ConsultarActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         ExcluirEstudanteMDI tela = new ExcluirEstudanteMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_ExcluirActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
         AlterarEstudanteMDI tela = new AlterarEstudanteMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_AlterarActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         CadastroEstudanteMDI tela = new CadastroEstudanteMDI();
         jDesktopPane9.add(tela);
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_CadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +331,13 @@ public class PrincipalMDI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alterar;
+    private javax.swing.JMenuItem Cadastrar;
+    private javax.swing.JMenuItem Consultar;
+    private javax.swing.JMenuItem Excluir;
+    private javax.swing.JMenuItem Listar;
+    private javax.swing.JMenuItem Sair;
+    private javax.swing.JMenuItem Sobre;
     private javax.swing.JMenu cadastro;
     private javax.swing.JMenu consulta;
     private javax.swing.JButton jButton1;
@@ -366,13 +352,6 @@ public class PrincipalMDI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;

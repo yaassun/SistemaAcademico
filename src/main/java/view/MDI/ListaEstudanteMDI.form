@@ -54,9 +54,9 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnAtualizar" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <Component id="atualizar" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="btnFechar" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <Component id="fechar" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,10 +74,10 @@
               <Component id="jScrollPane1" min="-2" pref="334" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnFechar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAtualizar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fechar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="atualizar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -164,7 +164,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnAtualizar">
+    <Component class="javax.swing.JButton" name="atualizar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="14" style="1"/>
@@ -172,10 +172,10 @@
         <Property name="text" type="java.lang.String" value="Atualizar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atualizarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnFechar">
+    <Component class="javax.swing.JButton" name="fechar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="14" style="1"/>
@@ -183,7 +183,7 @@
         <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFecharActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fecharActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
