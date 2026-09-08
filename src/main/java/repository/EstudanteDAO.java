@@ -35,7 +35,11 @@ public class EstudanteDAO {
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            if ("23505".equals(ex.getSQLState())) {
+                throw new RuntimeException("Já existe um estudante com essa matrícula.");
+            }
+
+            throw new RuntimeException("Erro ao cadastrar estudante.");
         } finally {
             Conexao.fecharConexao(con, stmt);
         }

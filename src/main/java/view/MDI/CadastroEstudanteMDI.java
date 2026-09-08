@@ -262,16 +262,12 @@ public class CadastroEstudanteMDI extends javax.swing.JInternalFrame {
             EstudanteDAO dao = new EstudanteDAO();
             dao.inserir(estudante);
 
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Estudante cadastrado com sucesso!"
-            );
+            javax.swing.JOptionPane.showMessageDialog(this,"Estudante cadastrado com sucesso!");
 
         } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "O semestre deve ser um número."
-            );
+            javax.swing.JOptionPane.showMessageDialog(this,"O semestre deve ser um número.");
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this,e.getMessage(),"Erro",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cadastrarActionPerformed
 
