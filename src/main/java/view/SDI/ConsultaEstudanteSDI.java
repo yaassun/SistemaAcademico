@@ -321,44 +321,32 @@ public class ConsultaEstudanteSDI extends javax.swing.JFrame {
         String busca = txtConsulta.getText().trim();
 
         if (busca.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Digite o termo de busca na caixa de texto.",
-                "Aviso",
-                javax.swing.JOptionPane.WARNING_MESSAGE
-            );
-            return;
+            javax.swing.JOptionPane.showMessageDialog(this, "Digite o termo de busca na caixa de texto.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+             return;
         }
 
-        EstudanteDAO dao = new EstudanteDAO();
-        java.util.List<Estudante> estudantes;
+        try {
+            EstudanteDAO dao = new EstudanteDAO();
+            java.util.List<Estudante> estudantes = dao.consultar(busca);
 
-        // Verifica qual rádio está selecionado
-        if (rbMatricula.isSelected()) {
-            estudantes = dao.consultar(busca); // Busca por matrícula
-        } else {
-            // Se o seu DAO tiver um método específico para nome, chame-o aqui. 
-            // Exemplo: estudantes = dao.consultarPorNome(busca);
-            estudantes = dao.consultar(busca); 
+            if (estudantes.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Estudante não encontrado!");
+                return;
+            }
+
+            Estudante estudante = estudantes.get(0);
+
+            txtMatriculaconsulta.setText(estudante.getMatricula());
+            txtNomeconsulta.setText(estudante.getNome());
+            txtCursoconsulta.setText(estudante.getCurso());
+            txtSemestreconsulta.setText(String.valueOf(estudante.getSemestre()));
+            txtEmailconsulta.setText(estudante.getEmail());
+            txtTelefoneconsulta.setText(estudante.getTelefone());
+            cmbSituacao.setSelectedItem(estudante.getSituacao());
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-
-        if (estudantes == null || estudantes.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Estudante não encontrado!"
-            );
-            return;
-        }
-
-        Estudante estudante = estudantes.get(0);
-
-        txtMatriculaconsulta.setText(estudante.getMatricula());
-        txtNomeconsulta.setText(estudante.getNome());
-        txtCursoconsulta.setText(estudante.getCurso());
-        txtSemestreconsulta.setText(String.valueOf(estudante.getSemestre()));
-        txtEmailconsulta.setText(estudante.getEmail());
-        txtTelefoneconsulta.setText(estudante.getTelefone());
-        cmbSituacao.setSelectedItem(estudante.getSituacao());
     }//GEN-LAST:event_consultarActionPerformed
 
     private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed

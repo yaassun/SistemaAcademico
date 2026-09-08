@@ -245,27 +245,31 @@ public class ExcluirEstudanteSDI extends javax.swing.JFrame {
             );
             return;
         }
+        
+        try {
+            EstudanteDAO dao = new EstudanteDAO();
+            var estudantes = dao.consultar(matricula);
 
-        EstudanteDAO dao = new EstudanteDAO();
-        var estudantes = dao.consultar(matricula);
+            if (estudantes.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Estudante não encontrado."
+                );
+                return;
+            }
 
-        if (estudantes.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Estudante não encontrado."
-            );
-            return;
+            Estudante estudante = estudantes.get(0);
+
+            txtMatricula.setText(estudante.getMatricula());
+            txtNome.setText(estudante.getNome());
+            txtCurso.setText(estudante.getCurso());
+            txtSemestre.setText(String.valueOf(estudante.getSemestre()));
+            txtEmail.setText(estudante.getEmail());
+            txtTelefone.setText(estudante.getTelefone());
+            cmbSituacao.setSelectedItem(estudante.getSituacao());
+        } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-
-        Estudante estudante = estudantes.get(0);
-
-        txtMatricula.setText(estudante.getMatricula());
-        txtNome.setText(estudante.getNome());
-        txtCurso.setText(estudante.getCurso());
-        txtSemestre.setText(String.valueOf(estudante.getSemestre()));
-        txtEmail.setText(estudante.getEmail());
-        txtTelefone.setText(estudante.getTelefone());
-        cmbSituacao.setSelectedItem(estudante.getSituacao());
     }//GEN-LAST:event_buscarActionPerformed
 
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
@@ -280,31 +284,18 @@ public class ExcluirEstudanteSDI extends javax.swing.JFrame {
         String matricula = txtMatricula.getText().trim();
 
         if (matricula.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Busque um estudante primeiro para realizar a exclusão.",
-                "Aviso",
-                javax.swing.JOptionPane.WARNING_MESSAGE
-            );
+            javax.swing.JOptionPane.showMessageDialog(this, "Busque um estudante primeiro para realizar a exclusão.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        int resposta = javax.swing.JOptionPane.showConfirmDialog(
-            this,
-            "Deseja realmente excluir este estudante?",
-            "Confirmar exclusão",
-            javax.swing.JOptionPane.YES_NO_OPTION
-        );
+        int resposta = javax.swing.JOptionPane.showConfirmDialog(this, "Deseja realmente excluir este estudante?", "Confirmar exclusão", javax.swing.JOptionPane.YES_NO_OPTION);
 
         if (resposta == javax.swing.JOptionPane.YES_OPTION) {
             try {
                 EstudanteDAO dao = new EstudanteDAO();
                 dao.excluir(matricula);
 
-                javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Estudante excluído com sucesso!"
-                );
+                javax.swing.JOptionPane.showMessageDialog(this, "Estudante excluído com sucesso!");
 
                 txtBusca.setText("");
                 txtMatricula.setText("");
@@ -314,13 +305,9 @@ public class ExcluirEstudanteSDI extends javax.swing.JFrame {
                 txtEmail.setText("");
                 txtTelefone.setText("");
                 cmbSituacao.setSelectedIndex(0);
+
             } catch (Exception ex) {
-                javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Erro ao excluir estudante: " + ex.getMessage(),
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-                );
+                javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_excluirActionPerformed

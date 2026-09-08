@@ -65,7 +65,7 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 105, 122));
-        jLabel1.setText("Buscar estudante");
+        jLabel1.setText("Alterar estudante");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setText("Matrícula");
@@ -287,11 +287,10 @@ public class AlterarEstudanteMDI extends javax.swing.JInternalFrame {
                 );
 
             } catch (NumberFormatException e) {
-                javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "O semestre deve ser um número."
-                );
-        }
+                javax.swing.JOptionPane.showMessageDialog(this,"O semestre deve ser um número.");
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
     }//GEN-LAST:event_alterarActionPerformed
 
     private void cmbSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSituacaoActionPerformed

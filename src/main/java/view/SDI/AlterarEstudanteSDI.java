@@ -63,7 +63,7 @@ public class AlterarEstudanteSDI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Estudante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(22, 105, 122))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar Estudante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(22, 105, 122))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Matricula");
@@ -283,10 +283,9 @@ public class AlterarEstudanteSDI extends javax.swing.JFrame {
             );
 
         } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "O semestre deve ser um número."
-            );
+            javax.swing.JOptionPane.showMessageDialog(this,"O semestre deve ser um número.");
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_alterarActionPerformed
 

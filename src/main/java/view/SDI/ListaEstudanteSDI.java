@@ -49,24 +49,26 @@ public class ListaEstudanteSDI extends javax.swing.JFrame {
     }
     
     private void listar() {
-        EstudanteDAO dao = new EstudanteDAO();
-        var estudantes = dao.listar();
+        try {
+            EstudanteDAO dao = new EstudanteDAO();
+            java.util.List<Estudante> estudantes = dao.listar();
 
-        javax.swing.table.DefaultTableModel modelo =
-            (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblEstudantes.getModel();
+            modelo.setRowCount(0);
 
-        modelo.setRowCount(0);
-
-        for (Estudante estudante : estudantes) {
-            modelo.addRow(new Object[]{
-                estudante.getMatricula(),
-                estudante.getNome(),
-                estudante.getCurso(),
-                estudante.getSemestre(),
-                estudante.getEmail(),
-                estudante.getTelefone(),
-                estudante.getSituacao()
-            });
+            for (Estudante estudante : estudantes) {
+                modelo.addRow(new Object[]{
+                    estudante.getMatricula(),
+                    estudante.getNome(),
+                    estudante.getCurso(),
+                    estudante.getSemestre(),
+                    estudante.getEmail(),
+                    estudante.getTelefone(),
+                    estudante.getSituacao()
+                });
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
     

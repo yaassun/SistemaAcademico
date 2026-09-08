@@ -82,7 +82,7 @@ public class EstudanteDAO {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("Erro ao consultar estudantes.", ex);
         } finally {
             Conexao.fecharConexao(con, stmt, rs);
         }
@@ -115,7 +115,7 @@ public class EstudanteDAO {
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("Erro ao alterar estudante.", ex);
         } finally {
             Conexao.fecharConexao(con, stmt);
         }
@@ -151,7 +151,7 @@ public class EstudanteDAO {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("Erro ao listar estudantes.", ex);
         } finally {
             Conexao.fecharConexao(con, stmt, rs);
         }
@@ -175,7 +175,7 @@ public class EstudanteDAO {
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("Erro ao excluir estudante.", ex);
         } finally {
             Conexao.fecharConexao(con, stmt);
         }
